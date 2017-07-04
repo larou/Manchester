@@ -1,0 +1,40 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>
+      Voucher
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding>
+  <venue-header [venue]="voucher.venue | async" (headerClick)="venueClick($event)"></venue-header>
+  <h1 class="voucher-title">{{ voucher.title }}</h1>
+  <ion-fab top right>
+    <button ion-fab (click)="clickSaveBtn()"><ion-icon [name]="saveBtnIcon"></ion-icon></button>
+  </ion-fab>
+  <p class="voucher-subtitle">{{ voucher.subtitle }}</p>
+  <p class="voucher-description">{{ voucher.description }}</p>
+  <div class="voucher-validity">
+    <h3>Days Active</h3>
+    <ul class="voucher-validity-buttons">
+      <li><button ion-button *ngFor="let day of voucher.availability.days">{{ day }}</button></li>
+    </ul>
+  </div>
+  <div class="voucher-validity">
+    <h3>Between</h3>
+    <ul class="voucher-validity-buttons">
+      <li><button ion-button>{{ voucher.availability.startTime }}</button></li>
+      <li><button ion-button outline>and</button></li>
+      <li><button ion-button>{{ voucher.availability.endTime }}</button></li>
+    </ul>
+  </div>
+  <div class="voucher-terms">
+    <p>
+      plasmators sunt gemnas de salvus assimilatio.
+      experimentum etiam ducunt ad grandis indictio.
+      ire sensim ducunt ad magnum index.
+      apolloniates de domesticus diatria, resuscitabo deus!
+      voxs sunt habenas de ferox lapsus.
+    </p>
+  </div>
+</ion-content>

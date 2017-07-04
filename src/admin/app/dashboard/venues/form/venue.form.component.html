@@ -1,0 +1,153 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title">Edit Profile</h4>
+            <p class="category">Complete your profile</p>
+          </div>
+          <div class="card-content">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.category }">
+                    <label class="control-label">Category</label>
+                    <select class="form-control" [(ngModel)]="venue.category" name="category" (change)="changeCategory($event.target.value)" required>
+                      <option></option>
+                      <option *ngFor="let category of categories">{{ category.$key }}</option>
+                    </select>
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.subcategory }">
+                    <label class="control-label">Subcategory</label>
+                    <select class="form-control" [(ngModel)]="venue.subcategory" name="subcategory" required>
+                      <option></option>
+                      <option *ngFor="let subcategory of subcategories | async">{{ subcategory?.$key }}</option>
+                    </select>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.name }">
+                    <label class="control-label">Name</label>
+                    <input type="text" name="name" class="form-control" [(ngModel)]="venue.name" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.subtitle }">
+                    <label class="control-label">Subtitle</label>
+                    <input type="text" name="subtitle" class="form-control" [(ngModel)]="venue.subtitle">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating">
+                    <label class="control-label">Featured</label>
+                    <input type="checkbox" name="featured" class="form-control" [(ngModel)]="venue.featured">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.priority }">
+                    <label class="control-label">Priority</label>
+                    <input type="number" name="priority" class="form-control" [(ngModel)]="venue.priority" required>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.location.lat }">
+                    <label class="control-label">Latitude</label>
+                    <input type="number" name="location.lat" class="form-control" [(ngModel)]="venue.location.lat" required>
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.location.lng }">
+                    <label class="control-label">Longitude</label>
+                    <input type="number" name="location.lng" class="form-control" [(ngModel)]="venue.location.lng" required>
+                  </div>
+                </div>
+                <div class="col-md-4"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Extra Info</label>
+                    <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.bio }">
+                      <label class="control-label">Bio</label>
+                      <textarea class="form-control" rows="5" name="bio" [(ngModel)]="venue.bio"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.contacts[0].details }">
+                    <label class="control-label">Phone</label>
+                    <input type="text" name="contacts[0].details" class="form-control" [(ngModel)]="venue.contacts[0].details">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.social[0].details }">
+                    <label class="control-label">Facebook</label>
+                    <input type="text" name="social[0].details" class="form-control" [(ngModel)]="venue.social[0].details">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.social[1].details }">
+                    <label class="control-label">Snapchat</label>
+                    <input type="text" name="social[1].details" class="form-control" [(ngModel)]="venue.social[1].details">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row" *ngFor="let photo of venue.photos; let i = index">
+                <div class="col-md-12">
+                  <div class="form-group form-black">
+                    <label class="control-label">Photo URL</label>
+                    <input type="text" [name]="'photos[' + i + ']'" class="form-control" [(ngModel)]="venue.photos[i]">
+                  </div>
+                </div>
+              </div>
+
+              <button type="button" class="btn" (click)="addPhoto()">Add photo</button>
+              <button type="submit" class="btn btn-danger pull-right">Save</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="#pablo">
+              <img class="img" src="../../../../assets/img/faces/marc.jpg"/>
+            </a>
+          </div>
+
+          <div class="content">
+            <h6 class="category text-gray">CEO / Co-Founder</h6>
+            <h4 class="card-title">{{ venue?.name }}</h4>
+            <p class="card-content">
+              {{ venue?.subtitle }}
+            </p>
+            <a href="#pablo" class="btn btn-danger btn-round">Follow</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,64 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>#DiscvrMCR</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<!-- Page Header -->
+
+<div class="page-cover no-button">
+<div class="wave"></div>
+
+    <div class="cover-title-content">
+      <div class="cover-title">{{ category.$key }}</div>
+      <div class="cover-desc">{{ category['!subtitle'] }}</div>
+    </div>
+
+</div>
+
+<!-- End of Page Header -->
+
+<div padding-horizontal>
+
+  <div class="small-title">Trending</div>
+
+  <venue-slides [venues]="trending" (venueClick)="clickVenue($event)"></venue-slides>
+
+  <div class="small-title">Places</div>
+
+    <ion-segment [(ngModel)]="sortBy" (ionChange)="changeSort()">
+      <ion-segment-button value="distance">Near Me</ion-segment-button>
+      <ion-segment-button value="alphabetical">A to Z</ion-segment-button>
+      <ion-segment-button value="age">New</ion-segment-button>
+    </ion-segment>
+
+  <ion-list no-lines>
+    <ion-item *ngFor="let venue of venues" (click)="clickVenue(venue)" class="menu-item small">
+
+      <div class="list-icon default" item-left></div>
+      <h2>{{ venue.name }}</h2>
+      <div [ngSwitch]="sortBy">
+        <p *ngSwitchCase="'distance'">{{ venue.getDistance() }}km away</p>
+        <p *ngSwitchCase="'alphabetical'">{{ venue.subtitle }}</p>
+        <p *ngSwitchCase="'age'">Added at {{ venue.createdAt | date }}</p>
+      </div>
+
+      <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+
+<!--       <div item-right [ngSwitch]="sortBy">
+        <p *ngSwitchCase="'distance'">
+          {{ venue.getDistance() }}km away
+        </p>
+        <p *ngSwitchCase="'age'">
+          Added at {{ venue.createdAt | date }}
+        </p>
+      </div> -->
+
+    </ion-item>
+  </ion-list>
+
+</div>
+
+</ion-content>

@@ -1,0 +1,18 @@
+page-nearby {
+  .toolbar-title {
+    color: color($colors, primary) !important;
+  }
+  .toolbar-background {
+    background: #ffffff;
+  }
+  .back-button {
+    color: color($colors, dark);
+  }
+  ion-footer {
+    background: #ffffff;
+  }
+}
+
+#map {
+  height: 100%;
+}

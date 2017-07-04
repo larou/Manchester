@@ -1,0 +1,109 @@
+<ion-header class="md">
+  <ion-navbar>
+    <ion-title text-center>#DiscvrMCR</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<!-- Page Title -->
+
+<div class="page-cover no-button">
+<div class="wave"></div>
+
+    <div class="cover-title-content">
+      <div class="cover-title">Manchester</div>
+      <div class="cover-desc">17th May 2017</div>
+    </div>
+
+</div>
+
+<!-- End of Page Title -->
+
+<!-- Menu Items -->
+
+  <ion-list no-lines>
+
+    <ion-item (click)="goToExplorePage()" class="menu-item">
+      <div class="list-icon explore" item-left></div>
+      <h2>Explore Vouchers</h2>
+      <p>Save in Manchester</p>
+      <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="goToNearbyPage()" class="menu-item">
+      <div class="list-icon map_marker" item-left></div>
+      <h2>View on Map</h2>
+      <p>Nearby Vouchers</p>
+      <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="goToDailyVoucherPage()" class="menu-item">
+      <div class="list-icon timer" item-left></div>
+      <h2>Daily Voucher</h2>
+      <p>4 Hours Remaining</p>
+      <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="goToMyVouchersPage()" class="menu-item">
+      <div class="list-icon saved_vouchers" item-left></div>
+      <h2>My Vouchers</h2>
+      <p>Saved Vouchers</p>
+      <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+    <ion-item (click)="goToRadioPage()" class="menu-item">
+      <div class="list-icon radio" item-left></div>
+      <h2>Radio</h2>
+      <p>Listen Live</p>
+      <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+    </ion-item>
+
+  </ion-list>
+
+<!-- End of Menu Items -->
+
+<!-- Hot Vouchers, Weather & News -->
+
+<div padding-horizontal>
+<div *ngIf="(hotVouchers | async)?.length > 0">
+  <div class="small-title">Hot Vouchers</div>
+  <voucher-slides [vouchers]="hotVouchers | async" (voucherClick)="clickVoucher($event)"></voucher-slides>
+</div>
+<!--   <div class="small-title">Weather</div>
+  <ion-card>
+    <ion-card-header>Sunday 19th March</ion-card-header>
+    <ion-card-content>
+      <ion-row>
+        <ion-col col-2><ion-icon name="rainy" item-left></ion-icon></ion-col>
+        <ion-col><p>80% Precipitation - Wind NNE</p></ion-col>
+        <ion-col col-2><div item-right>20°C</div></ion-col>
+      </ion-row>
+    </ion-card-content>
+  </ion-card> -->
+
+  <div class="small-title">News & Stories</div>
+
+  <ion-slides  spaceBetween="10" slidesOffsetBefore="16"  class="discovr-slides" options="{'loop':false}">
+    <ion-slide *ngFor="let newsItem of latestNews | async" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
+
+    <div class="slide-overlay">
+      <div class="overlay-back" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg) no-repeat"></div>
+    </div>
+
+         <div class="slide-content">
+          <div class="inner">
+            <div class="slide-title">{{ newsItem.title }}</div>
+            <div class="slide-desc">Published by {{ newsItem.publisher }}</div>
+          </div>
+          <i class="fa fa-angle-right li-action icon" aria-hidden="true"></i>
+      </div>
+
+    </ion-slide>
+  </ion-slides>
+
+</div> 
+
+<!-- End of Hot Vouchers, Weather & News -->
+
+</ion-content>

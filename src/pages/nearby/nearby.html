@@ -1,0 +1,13 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>
+      Nearby Vouchers
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+ <googlemap (markerClick)="markerClick($event)"></googlemap>
+</ion-content>
+
+<venue-popover *ngIf="selectedVenue" [venue]="selectedVenue" (dismiss)="dismissPopover()"></venue-popover>

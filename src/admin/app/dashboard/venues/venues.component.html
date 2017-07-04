@@ -1,0 +1,88 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <div class="pull-right">
+              <a [routerLink]="['create']">
+                <button class="btn btn-round btn-just-icon btn-success"><i class="material-icons">add</i></button>
+              </a>
+            </div>
+            <h4 class="title">All Venues</h4>
+            <p class="category">Here is a subtitle for this table</p>
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table">
+              <thead class="text-danger">
+              <tr>
+                <th>Name</th>
+                <th>Subtitle</th>
+                <th>Featured</th>
+                <th>Priority</th>
+                <th></th>
+                <th class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let venue of venues | async">
+                <ng-container *ngIf="!selectedVenue || selectedVenue === venue">
+                  <td>{{ venue.name }}</td>
+                  <td>{{ venue.subtitle }}</td>
+                  <td>{{ venue.featured }}</td>
+                  <td>{{ venue.priority }}</td>
+                  <td><button class="btn" [ngClass]="{'btn-success': selectedVenue === venue}" (click)="selectVenue(venue)">Vouchers</button></td>
+                  <td>
+                    <button class="btn btn-primary" [routerLink]="[venue.$key, 'update']">View/Update</button>
+                    <button class="btn btn-danger" (click)="destroyVenue(venue)"><i class="material-icons">delete</i></button>
+                  </td>
+                </ng-container>
+              </tr>
+              </tbody>
+            </table>
+
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-12" *ngIf="selectedVenue">
+        <div class="card card-plain">
+          <div class="card-header" data-background-color="red">
+            <div class="pull-right">
+              <a [routerLink]="[selectedVenue.$key, 'vouchers']">
+                <button class="btn btn-round btn-just-icon btn-success"><i class="material-icons">add</i></button>
+              </a>
+            </div>
+            <h4 class="title">{{ selectedVenue?.name }}</h4>
+            <p class="category">Vouchers</p>
+          </div>
+          <div class="card-content table-responsive">
+            <table class="table table-hover">
+              <thead>
+              <tr>
+                <th>Title</th>
+                <th>Subtitle</th>
+                <th>Featured</th>
+                <th>Enabled</th>
+                <th class="text-center">Actions</th>
+              </tr>
+              </thead>
+              <tbody>
+              <tr *ngFor="let voucher of vouchers | async">
+                <td>{{ voucher.title }}</td>
+                <td>{{ voucher.subtitle }}</td>
+                <td>{{ voucher.featured }}</td>
+                <td>{{ !voucher.disabled }}</td>
+                <td>
+                  <button class="btn btn-primary" [routerLink]="[selectedVenue.$key, 'vouchers', voucher.$key]">View/Update</button>
+                  <button class="btn btn-danger" (click)="destroyVoucher(voucher)"><i class="material-icons">delete</i></button>
+                </td>
+              </tr>
+              </tbody>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

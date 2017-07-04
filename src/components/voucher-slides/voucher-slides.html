@@ -1,0 +1,19 @@
+<ion-slides class="discovr-slides" loop spaceBetween="10" slidesPerView="1.6" centeredSlides="true"> 
+
+  <ion-slide *ngFor="let voucher of vouchers" style="background-image:url('http://e2.365dm.com/16/02/16-9/20/wayne-rooney-dejected-woe-frustration-manchester-united-southampton-premier_3417427.jpg')">
+
+	  <div class="slide-overlay">
+      <div class="overlay-back" style="background-image:url('http://e2.365dm.com/16/02/16-9/20/wayne-rooney-dejected-woe-frustration-manchester-united-southampton-premier_3417427.jpg')"></div>
+    </div>
+
+	   <div class="slide-content">
+	        <div class="inner">
+	          <div class="slide-title">{{ voucher.title }}</div>
+	          <div class="slide-desc">{{ voucher.subtitle }}</div>
+	        </div>
+	        <i class="fa fa-angle-right li-action icon" aria-hidden="true"></i>
+	    </div>
+
+  </ion-slide>
+</ion-slides>
+

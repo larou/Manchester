@@ -1,0 +1,29 @@
+page-home {
+	.item-inner{padding-right: 16px !important;}
+
+	.list-icon.map_marker{
+		background-image: url('../assets/img/icons/map_marker.svg'), linear-gradient(-135deg, #FD1F7F 0%, #F41D5B 100%);
+		background-position: 50% 50%;
+		background-repeat: no-repeat;}
+
+	.list-icon.timer{
+		background-image: url('../assets/img/icons/timer.svg'), linear-gradient(-135deg, #FD1F7F 0%, #F41D5B 100%);
+		background-position: 50% 50%;
+		background-repeat: no-repeat;}
+
+	.list-icon.radio{
+		background-image: url('../assets/img/icons/radio.svg'), linear-gradient(-135deg, #FD1F7F 0%, #F41D5B 100%);
+		background-position: 50% 50%;
+		background-repeat: no-repeat;}
+
+	.list-icon.explore{
+		background-image: url('../assets/img/icons/explore.svg'), linear-gradient(-135deg, #FD1F7F 0%, #F41D5B 100%);
+		background-position: 50% 50%;
+		background-repeat: no-repeat;}
+
+	.list-icon.saved_vouchers{
+		background-image: url('../assets/img/icons/saved_vouchers.svg'), linear-gradient(-135deg, #FD1F7F 0%, #F41D5B 100%);
+		background-position: 50% 50%;
+		background-repeat: no-repeat;}
+
+}

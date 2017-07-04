@@ -1,0 +1,44 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>#DiscvrMCR</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<div class="page-cover no-button">
+<div class="wave"></div>
+
+    <div class="cover-title-content">
+      <div class="cover-title">{{ title }}</div>
+      <div class="cover-desc">Your Perfect Pocket Guide</div>
+    </div>
+
+</div>
+
+<!-- List of Categories -->
+  
+  <div padding-horizontal>
+
+    <ion-list no-lines>
+
+      <ion-item *ngFor="let category of categories" (click)="clickCategory(category)" class="menu-item small">
+        <div class="list-icon default" item-left></div>
+          <h2>{{ category.$key }}</h2>
+          <p>42 places</p>
+        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+      </ion-item>
+
+    </ion-list>
+
+
+  <!-- Hot Vouchers -->
+
+    <div *ngIf="(hotVouchers | async)?.length > 0">
+      <div class="small-title">{{ title }} Vouchers</div>
+      <voucher-slides [vouchers]="hotVouchers | async" (voucherClick)="clickVoucher($event)"></voucher-slides>
+    </div>
+
+  </div>
+
+</ion-content>

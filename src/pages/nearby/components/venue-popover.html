@@ -1,0 +1,7 @@
+<ion-footer text-center padding>
+  <ion-fab top right edge>
+    <button ion-fab mini (click)="dismiss.emit()"><ion-icon name="close"></ion-icon></button>
+  </ion-fab>
+  <h2>{{ venue?.name }}</h2>
+  <button ion-button (click)="goToVenuePage(venue)" [disabled]="!venue">View Vouchers</button>
+</ion-footer>

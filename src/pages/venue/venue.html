@@ -1,0 +1,49 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      {{ venue.name }}
+    </ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<!-- Page Title -->
+
+<div class="page-cover">
+<div class="wave"></div>
+
+    <div class="cover-title-content">
+      <div class="cover-title">{{ venue.name }}</div>
+      <div class="cover-desc">{{ venue.subtitle }}</div>
+    </div>
+
+</div>
+
+<!-- End of Page Title -->
+
+  <!-- <venue-header [venue]="venue"></venue-header> -->
+
+    <ion-segment [(ngModel)]="segment">
+      <ion-segment-button value="details">Details</ion-segment-button>
+      <ion-segment-button value="vouchers">Vouchers</ion-segment-button>
+    </ion-segment>
+
+  <div padding-horizontal>
+  <div [ngSwitch]="segment">
+
+    <div *ngSwitchCase="'details'">
+      <venue-details [venue]="venue"></venue-details>
+    </div>
+
+    <div *ngSwitchCase="'vouchers'" class="voucherList">
+      <div class="large-title">Available Now</div>
+      <voucher-list [vouchers]="availableVouchers" (voucherClick)="voucherClick($event)"></voucher-list>
+      <div class="large-title">All Vouchers</div>
+      <voucher-list [vouchers]="otherVouchers" (voucherClick)="voucherClick($event)"></voucher-list>
+    </div>
+
+  </div>
+  </div>
+
+</ion-content>

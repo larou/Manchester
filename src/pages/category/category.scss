@@ -1,0 +1,31 @@
+page-category{
+
+.segment{
+	margin-bottom: 20px;}
+
+.segment-ios{
+
+	.segment-button{
+		margin-right: 5px;
+		border-radius: 4px;
+		font-weight: 600;
+		height: 4.4rem;
+		line-height: 4.2rem;
+		background: #FED5E1;
+		color: #B64262;
+		border:none;
+		&:first-of-type{margin-right: 5px; border-radius: 4px;}
+		&:last-of-type{margin-right: 0; border-radius: 4px;}}}
+
+
+// Icons
+
+	.list-icon.default{
+		background-image: url('../assets/img/icons/small_discvr_mark.svg'), linear-gradient(-135deg, #FD1F7F 0%, #F41D5B 100%);
+		background-position: 50% 50%;
+		background-repeat: no-repeat;}
+
+
+
+
+}

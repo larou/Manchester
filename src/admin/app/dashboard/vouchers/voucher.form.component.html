@@ -1,0 +1,89 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="card">
+          <div class="card-header" data-background-color="red">
+            <h4 class="title">Edit Voucher</h4>
+            <p class="category">wut</p>
+          </div>
+          <div class="card-content">
+            <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.title }">
+                    <label class="control-label">Title</label>
+                    <input type="text" name="title" class="form-control" [(ngModel)]="voucher.title" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.subtitle }">
+                    <label class="control-label">Subtitle</label>
+                    <input type="text" name="subtitle" class="form-control" [(ngModel)]="voucher.subtitle">
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating">
+                    <label class="control-label">Featured</label>
+                    <input type="checkbox" name="featured" class="form-control" [(ngModel)]="voucher.featured">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating">
+                    <label class="control-label">Disabled</label>
+                    <input type="checkbox" name="disabled" class="form-control" [(ngModel)]="voucher.disabled">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.priority }">
+                    <label class="control-label">Priority</label>
+                    <input type="number" name="priority" class="form-control" [(ngModel)]="voucher.priority" required>
+                  </div>
+                </div>
+              </div>
+
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <label>Extra Info</label>
+                    <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.description }">
+                      <label class="control-label">Description</label>
+                      <textarea class="form-control" rows="5" name="description" [(ngModel)]="voucher.description"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <button type="submit" class="btn btn-danger pull-right">Save</button>
+              <div class="clearfix"></div>
+            </form>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-4">
+        <div class="card card-profile">
+          <div class="card-avatar">
+            <a href="#pablo">
+              <img class="img" [src]="venue?.photos[0]" src="../../../assets/img/angular2-logo.png"/>
+            </a>
+          </div>
+
+          <div class="content">
+            <h6 class="category text-gray">Venue</h6>
+            <h4 class="card-title">{{ venue?.name }}</h4>
+            <p class="card-content">
+              {{ venue?.subtitle }}
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

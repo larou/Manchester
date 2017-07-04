@@ -1,0 +1,6 @@
+<ion-list>
+  <ion-item *ngFor="let day of days">
+    <div item-left>{{ humanize(day) }}</div>
+    <div item-right>{{ openingTimes[day]?.open }} - {{ openingTimes[day]?.close }}</div>
+  </ion-item>
+</ion-list>

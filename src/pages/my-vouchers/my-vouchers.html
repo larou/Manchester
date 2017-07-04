@@ -1,0 +1,29 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title text-center>#DiscovrMCR</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<ion-content>
+
+<!-- Page Title -->
+
+<div class="page-cover">
+<div class="wave"></div>
+
+    <div class="cover-title-content">
+      <div class="cover-title">Your Vouchers</div>
+      <div class="cover-desc">Saved Deals and Discounts</div>
+    </div>
+
+</div>
+
+<!-- End of Page Title -->
+	
+	<div padding-horizontal>
+
+  <div class="small-title">Vouchers</div>
+  <voucher-list [vouchers]="vouchers" (voucherClick)="voucherClick($event)"></voucher-list>
+  
+  </div>
+</ion-content>

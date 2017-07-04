@@ -1,0 +1,75 @@
+page-venue {
+
+.segment{
+	margin-bottom: 20px;}
+
+// iOS Only Segment
+
+.segment-ios{
+
+	padding: 0 16px;
+
+	.segment-button{
+		margin-right: 5px;
+		border-radius: 4px;
+		font-weight: 600;
+		height: 4.4rem;
+		line-height: 4.2rem;
+		background: #FED5E1;
+		color: #B64262;
+		border:none;
+		&:first-of-type{margin-right: 5px; border-radius: 4px;}
+		&:last-of-type{margin-right: 0; border-radius: 4px;}}
+
+	.segment-activated{}}
+
+
+// MD Segment
+
+	.segment-md{
+		margin-top: -10px;
+		.segment-button{font-weight: 600;}
+	}
+
+
+
+
+.content-md{
+
+	.list{
+
+		.item{
+			padding-left: 0 !important;
+			
+			.label{margin: 0 0 20px 0;}
+			.large-title{margin-bottom: 0; border-bottom: 1px solid #E4E4E4; padding-bottom: 10px;}
+			.item-inner{border-bottom: 0;}
+			.item-icon{position: absolute; top: 0; right: 0; margin-top: 0;}
+
+			.expandedContent{
+				margin-top: 20px;
+
+				.list{margin-bottom: 0;
+					.item .item-icon{position: relative; top: auto; left: auto; margin-bottom: 0; font-size: 1.67rem; color: #BEBEBE}}
+
+				.menu-item .label{
+					margin-bottom: 0;
+					h2{margin: 0 0 4px;}}
+
+			}}
+
+	}} // End of Content MD
+
+
+.voucherList{
+	.list{
+		.label{
+			margin-bottom: 0 !important;
+			h2{margin: 0 0 4px;}
+		}
+	}
+}
+
+
+
+}

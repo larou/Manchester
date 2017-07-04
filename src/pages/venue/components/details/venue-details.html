@@ -1,0 +1,43 @@
+<ion-list>
+
+  <ion-item (click)="expand.bio = !expand.bio">
+    <ion-icon item-right [name]="expand.bio ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+    <div class="large-title">Bio</div>
+    <div class="expandedContent" *ngIf="expand.bio"><p>{{ venue.bio }}</p></div>
+  </ion-item>
+
+  <ion-item (click)="expand.contact = !expand.contact">
+    <ion-icon item-right [name]="expand.contact ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+    <div class="large-title">Contact</div>
+      <div *ngIf="expand.contact" class="expandedContent">
+        <venue-contact-details [contacts]="venue.contacts"></venue-contact-details>
+      </div>
+  </ion-item>
+
+  <ion-item (click)="expand.photos = !expand.photos">
+    <ion-icon item-right [name]="expand.photos ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+    <div class="large-title">Photos</div>
+      <div class="expandedContent" *ngIf="expand.photos">
+        <venue-photos [photos]="venue.photos"></venue-photos>
+      </div>
+  </ion-item>
+
+  <ion-item (click)="expand.social = !expand.social">
+    <ion-icon item-right [name]="expand.social ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+    <div class="large-title">Social Media</div>
+    <div class="expandedContent" *ngIf="expand.social">
+      <venue-contact-details [contacts]="venue.social"></venue-contact-details>
+    </div>
+  </ion-item>
+
+  <ion-item (click)="expand.opening = !expand.opening">
+    <ion-icon item-right [name]="expand.opening ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+    <div class="large-title">Opening Times</div>
+    <div class="expandedContent" *ngIf="expand.opening">
+      <venue-opening-times [openingTimes]="venue.openingTimes"></venue-opening-times>
+    </div>
+  </ion-item>
+
+</ion-list>
+
+
