@@ -14,9 +14,10 @@ export class VoucherService implements IStore<IVoucher> {
     private af: AngularFire,
     private voucherStorage: VoucherStorage,
     private voucherFactory: VoucherFactory,
-  ) {}
-
-  public getFeatured(limit: number = 5) {
+  ) {
+  }
+  
+  public getFeatured(limit: number ) {
     return this.af.database.list('/vouchers', {
       query: {
         orderByChild: 'featured',
@@ -24,14 +25,17 @@ export class VoucherService implements IStore<IVoucher> {
       },
     })
       .map((vouchers: IRawVoucher[]) => {
+        
         return this.voucherFactory.fromRaw(vouchers)
           .filter(voucher => voucher.available)
           .filter(voucher => !voucher.disabled)
           .sort((a, b) => b.priority - a.priority)
-          .slice(0, limit);
+          .slice(0, limit)
+          
       });
+      
   }
-
+  
   public getById(id: string): Observable<IVoucher> {
     return this.af.database.object(`/vouchers/${id}`)
       .map(voucher => this.voucherFactory.fromRaw(voucher));

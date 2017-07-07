@@ -12,37 +12,72 @@ import { ExplorePage } from '../explore/explore';
 import { ViewChild } from '@angular/core';
 import { Slides } from 'ionic-angular';
 
-const NUM_FEATURED_VOUCHERS = 6;
+const NUM_FEATURED_VOUCHERS = 10;
 
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
-   @ViewChild(Slides) slides: Slides;
+  @ViewChild(Slides) slides: Slides;
+  loader : any
+  myDate: String = new Date().toDateString();
+  endTime: any
+  remaining: any
+  myCurrentTime: any = new Date().getHours()
+  public MyHotVoucher: any[] = [];
+  public latestNews: Observable<INews[]>;
+  public hotVouchers: Observable<IVoucher[]>;
+  constructor(private navCtrl: NavController,
+    private voucherService: VoucherService,
+    private loadingCtrl: LoadingController,
+    newsService: NewsService,
+  ) {
+    this.latestNews = newsService.get();
+    this.hotVouchers = this.voucherService.getFeatured(NUM_FEATURED_VOUCHERS)
+    this.hotVouchers.subscribe(users => {
+      for (let i = 0; i < users.length; i++) {
+        let obj = users[i]
+        this.MyHotVoucher.push(obj['title'])
 
+      }
+      this.MyHotVoucher = this.shuffleArray(this.MyHotVoucher)
+    });
+
+    this.voucherService.getDailyVoucher()
+      .subscribe((voucher) => {
+        this.endTime = voucher.availability.endTime;
+        this.endTime = this.endTime.split(":")[0]
+        // console.log(this.timer.split(":")[0])
+
+        this.remaining = this.endTime - this.myCurrentTime
+          console.log(this.remaining)
+
+      });
+      
+  }
+ 
+  
+  shuffleArray(array) {
+    for (var i = array.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var temp = array[i];
+      array[i] = array[j];
+      array[j] = temp;
+    }
+    return array;
+  }
   goToSlide() {
     this.slides.slideTo(2, 500);
   }
-   slideChanged() {
+
+  slideChanged() {
     let currentIndex = this.slides.getActiveIndex();
     console.log('Current index is', currentIndex);
   }
 
-  public latestNews: Observable<INews[]>;
-  public hotVouchers: Observable<IVoucher[]>;
-
-  constructor(private navCtrl: NavController,
-              private voucherService: VoucherService,
-              private loadingCtrl: LoadingController,
-              newsService: NewsService,
-  ) {
-    this.latestNews = newsService.get();
-    this.hotVouchers = voucherService.getFeatured(NUM_FEATURED_VOUCHERS);
-  }
-
   goToExplorePage() {
-    this.navCtrl.push(ExplorePage, {category: ''});
+    this.navCtrl.push(ExplorePage, { category: '' });
   }
 
   goToNearbyPage() {
@@ -59,7 +94,8 @@ export class HomePage {
     }).present();
     this.voucherService.getDailyVoucher()
       .subscribe((voucher) => {
-        this.navCtrl.push(VoucherPage, {voucher});
+        this.navCtrl.push(VoucherPage, { voucher });
+
       });
   }
 
@@ -68,10 +104,10 @@ export class HomePage {
       dismissOnPageChange: true,
     }).present();
     this.voucherService.getAllFromStorage()
-      .subscribe((vouchers) => this.navCtrl.push(MyVouchersPage, {vouchers}));
+      .subscribe((vouchers) => this.navCtrl.push(MyVouchersPage, { vouchers }));
   }
 
   clickVoucher(voucher) {
-    this.navCtrl.push(VoucherPage, {voucher});
+    this.navCtrl.push(VoucherPage, { voucher });
   }
 }

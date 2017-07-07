@@ -13,6 +13,7 @@ export class MyApp {
   rootPage = HomePage;
 
   constructor(
+    
     platform: Platform,
     af: AngularFire,
     private splashScreen: SplashScreen,
@@ -23,6 +24,8 @@ export class MyApp {
       // Here you can do any higher level native things you might need.
       this.statusBar.styleDefault();
       this.splashScreen.hide();
+      
     });
   }
+  
 }

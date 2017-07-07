@@ -4,23 +4,25 @@
   </ion-navbar>
 </ion-header>
 
-<ion-content>
+<ion-content >
 
-<!-- Page Title -->
+  <!-- Page Title -->
 
-<div class="page-cover no-button">
-<div class="wave"></div>
+  <div class="page-cover no-button">
+    <div class="wave"></div>
 
     <div class="cover-title-content">
       <div class="cover-title">Manchester</div>
-      <div class="cover-desc">17th May 2017</div>
+      <div class="cover-desc">
+      <p>{{myDate}}</p>
+      </div>
     </div>
 
-</div>
+  </div>
 
-<!-- End of Page Title -->
+  <!-- End of Page Title -->
 
-<!-- Menu Items -->
+  <!-- Menu Items -->
 
   <ion-list no-lines>
 
@@ -41,7 +43,8 @@
     <ion-item (click)="goToDailyVoucherPage()" class="menu-item">
       <div class="list-icon timer" item-left></div>
       <h2>Daily Voucher</h2>
-      <p>4 Hours Remaining</p>
+      <p>{{remaining}} Hours Remaining</p>
+
       <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
     </ion-item>
 
@@ -61,16 +64,22 @@
 
   </ion-list>
 
-<!-- End of Menu Items -->
+  <!-- End of Menu Items -->
 
-<!-- Hot Vouchers, Weather & News -->
+  <!-- Hot Vouchers, Weather & News -->
 
-<div padding-horizontal>
-<div *ngIf="(hotVouchers | async)?.length > 0">
-  <div class="small-title">Hot Vouchers</div>
-  <voucher-slides [vouchers]="hotVouchers | async" (voucherClick)="clickVoucher($event)"></voucher-slides>
-</div>
-<!--   <div class="small-title">Weather</div>
+  <div padding-horizontal>
+    <div *ngIf="(MyHotVoucher)?.length > 0">
+      <div class="small-title">Hot Vouchers</div>
+      <ion-slides   spaceBetween="10" slidesOffsetBefore="16" class="discovr-slides">
+        <ion-slide *ngFor="let v of MyHotVoucher" (voucherClick)="clickVoucher($event)" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
+          <!-- <voucher-slides  [vouchers]="hotVouchers | async" (voucherClick)="clickVoucher($event)"></voucher-slides> -->
+          {{v}}
+          
+        </ion-slide>  
+      </ion-slides>  
+    </div>
+    <!--   <div class="small-title">Weather</div>
   <ion-card>
     <ion-card-header>Sunday 19th March</ion-card-header>
     <ion-card-content>
@@ -81,29 +90,29 @@
       </ion-row>
     </ion-card-content>
   </ion-card> -->
+  
+    <div class="small-title">News & Stories</div>
 
-  <div class="small-title">News & Stories</div>
+    <ion-slides spaceBetween="10" slidesOffsetBefore="16" class="discovr-slides" options="{'loop':false}">
+      <ion-slide *ngFor="let newsItem of latestNews | async" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
 
-  <ion-slides  spaceBetween="10" slidesOffsetBefore="16"  class="discovr-slides" options="{'loop':false}">
-    <ion-slide *ngFor="let newsItem of latestNews | async" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
+        <div class="slide-overlay">
+          <div class="overlay-back" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg) no-repeat"></div>
+        </div>
 
-    <div class="slide-overlay">
-      <div class="overlay-back" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg) no-repeat"></div>
-    </div>
-
-         <div class="slide-content">
+        <div class="slide-content">
           <div class="inner">
             <div class="slide-title">{{ newsItem.title }}</div>
             <div class="slide-desc">Published by {{ newsItem.publisher }}</div>
           </div>
           <i class="fa fa-angle-right li-action icon" aria-hidden="true"></i>
-      </div>
+        </div>
 
-    </ion-slide>
-  </ion-slides>
+      </ion-slide>
+    </ion-slides>
 
-</div> 
+  </div>
 
-<!-- End of Hot Vouchers, Weather & News -->
+  <!-- End of Hot Vouchers, Weather & News -->
 
 </ion-content>
