@@ -11,7 +11,8 @@
 
     <div class="cover-title-content">
       <div class="cover-title">{{ title }}</div>
-      <div class="cover-desc">Your Perfect Pocket Guide</div>
+      <div class="cover-desc" *ngIf="!category">Your Perfect Pocket Guide </div>      
+     <div class="cover-desc" *ngIf="category">{{ subTitle }}</div>
     </div>
 
 </div>
@@ -21,14 +22,16 @@
   <div padding-horizontal>
 
     <ion-list no-lines>
-
-      <ion-item *ngFor="let category of categories" (click)="clickCategory(category)" class="menu-item small">
+      <div>
+      <ion-item   *ngFor="let category of categories"  (click)="clickCategory(category)" class="menu-item small">
+       
         <div class="list-icon default" item-left></div>
-          <h2>{{ category.$key }}</h2>
-          <p>42 places</p>
+          <h2 >{{ category.$key }}</h2>
+          <p *ngIf="category.sum ">{{category.sum}} places</p>
+          <p *ngIf="!category.sum"><span *ngIf="category.Places">{{category.Places}} places</span></p>
         <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
       </ion-item>
-
+      </div>
     </ion-list>
 
 

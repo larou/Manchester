@@ -75,4 +75,6 @@ export type ICategory = {
   '!subtitle': string;
   $key: string;
   $value?: string;
+  sum : number ;
+  'subTitle': string ;
 }

@@ -9,14 +9,24 @@ import { VoucherStorage } from './storage';
 
 @Injectable()
 export class VoucherService implements IStore<IVoucher> {
-
+  allVouchers: any;
+   all : any;
   constructor(
     private af: AngularFire,
     private voucherStorage: VoucherStorage,
     private voucherFactory: VoucherFactory,
-  ) {}
+  ) {
+  }
 
-  public getFeatured(limit: number = 5) {
+  public getAllVouchers()  {
+        
+      return this.af.database.list('/vouchers') 
+       .map(voucher => this.voucherFactory.fromRaw(voucher));
+   
+
+   
+  }
+  public getFeatured(limit: number) {
     return this.af.database.list('/vouchers', {
       query: {
         orderByChild: 'featured',
@@ -24,12 +34,15 @@ export class VoucherService implements IStore<IVoucher> {
       },
     })
       .map((vouchers: IRawVoucher[]) => {
+
         return this.voucherFactory.fromRaw(vouchers)
           .filter(voucher => voucher.available)
           .filter(voucher => !voucher.disabled)
           .sort((a, b) => b.priority - a.priority)
-          .slice(0, limit);
+          .slice(0, limit)
+
       });
+
   }
 
   public getById(id: string): Observable<IVoucher> {
@@ -41,7 +54,7 @@ export class VoucherService implements IStore<IVoucher> {
    * Create or update the voucher in the database.
    * @returns {firebase.Promise<any>|firebase.Thenable<any>}
    */
-  public save(voucher: IVoucher|IRawVoucher) {
+  public save(voucher: IVoucher | IRawVoucher) {
     if (voucher instanceof Voucher) {
       voucher = voucher.toRaw();
     }
@@ -57,7 +70,7 @@ export class VoucherService implements IStore<IVoucher> {
       .remove();
   }
 
-  public getByVenue(venue: IVenue|string): Observable<IVoucher[]> {
+  public getByVenue(venue: IVenue | string): Observable<IVoucher[]> {
     if (typeof venue !== 'string') {
       return this.getByVenue(venue.$key);
     }

@@ -1,6 +1,6 @@
 module.exports = {
-  apiKey: 'AIzaSyAvqoUucMT9WUURLpimMNadCnLS1YmBGM0',
-  authDomain: 'discovr-d0d4a.firebaseapp.com',
-  databaseURL: 'https://discovr-d0d4a.firebaseio.com',
-  storageBucket: 'discovr-d0d4a.appspot.com',
+  apiKey: 'AIzaSyD7q96Bmt4pjTlg4f36hR6HK5wuMLaGeG8',
+  authDomain: 'discvrmcr.firebaseapp.com',
+  databaseURL: 'https://discvrmcr.firebaseio.com',
+  storageBucket: 'discvrmcr.appspot.com',
 };

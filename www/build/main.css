@@ -27741,6 +27741,10 @@ page-category .list-icon.default {
   background-repeat: no-repeat;
 }
 
+page-explore #subTitle {
+  width: 350px;
+}
+
 page-home .item-inner {
   padding-right: 16px !important;
 }
