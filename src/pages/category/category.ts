@@ -2,9 +2,11 @@ import { AfterViewInit, ChangeDetectorRef, Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 import * as moment from 'moment';
 
-import { IVenue, VenueService } from '../../discovr';
+import { IVenue, VenueService,IVoucher,VoucherService } from '../../discovr';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { VenuePage } from '../venue/venue';
+
+const NUM_FEATURED_VOUCHERS = 5;
 
 @Component({
   selector: 'page-category',
@@ -17,17 +19,22 @@ export class CategoryPage implements AfterViewInit {
   public sortBy = 'distance';
   public trending: Observable<IVenue[]>;
   public venues: IVenue[];
-
+  public title : any ;
   private _venues: Subject<IVenue[]>;
-
+  public business : Observable<IVoucher[]>
+  public Mybusiness :  any[] = [];
+  
   constructor(
     private cd: ChangeDetectorRef,
     private navCtrl: NavController,
     private navParams: NavParams,
     private venueService: VenueService,
+     private voucherService: VoucherService
   ) {
     this.category = navParams.get('category');
     this.subcategory = navParams.get('subcategory');
+    this.title = this.subcategory['title']
+    
   }
 
   public ngAfterViewInit() {
@@ -36,11 +43,19 @@ export class CategoryPage implements AfterViewInit {
       .map((venues: IVenue[]) => venues
         .filter(v => v.featured)
         .sort((a, b) => b.priority - a.priority));
-    this.venueService.getByCategory([this.category, this.subcategory])
+    this.venueService.getByCategory([this.category, this.title])
       .subscribe(this._venues);
     this.changeSort();
-  }
 
+  // working on slides !!!!
+     this.business = this.voucherService.getFeatured(NUM_FEATURED_VOUCHERS)
+     this.business.subscribe(users => {
+      for (let i = 0; i < users.length; i++) {
+        let obj = users[i]
+        this.Mybusiness.push(obj['title'])
+      }
+    })
+  }
   public clickVenue(venue) {
     this.navCtrl.push(VenuePage, {venue});
   }
