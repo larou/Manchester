@@ -1,13 +1,14 @@
 <ion-list>
 
-  <ion-item (click)="expand.bio = !expand.bio">
-    <ion-icon item-right [name]="expand.bio ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+  <ion-item text-wrap>
+    <ion-icon (click)="expand.bio = !expand.bio" item-right [name]="expand.bio ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
     <div class="large-title">Bio</div>
-    <div class="expandedContent" *ngIf="expand.bio"><p>{{ venue.bio }}</p></div>
+    <div  class="expandedContent" *ngIf="expand.bio"><p>{{venue.bio}}</p></div>
   </ion-item>
 
-  <ion-item (click)="expand.contact = !expand.contact">
-    <ion-icon item-right [name]="expand.contact ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
+<!-- (click)="expand.contact = !expand.contact" -->
+  <ion-item>
+    <ion-icon (click)="expand.contact = !expand.contact" item-right [name]="expand.contact ? 'arrow-dropdown' : 'arrow-dropright'"></ion-icon>
     <div class="large-title">Contact</div>
       <div *ngIf="expand.contact" class="expandedContent">
         <venue-contact-details [contacts]="venue.contacts"></venue-contact-details>
@@ -39,5 +40,4 @@
   </ion-item>
 
 </ion-list>
-
 

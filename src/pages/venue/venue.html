@@ -38,7 +38,9 @@
 
     <div *ngSwitchCase="'vouchers'" class="voucherList">
       <div class="large-title">Available Now</div>
+     
       <voucher-list [vouchers]="availableVouchers" (voucherClick)="voucherClick($event)"></voucher-list>
+      
       <div class="large-title">All Vouchers</div>
       <voucher-list [vouchers]="otherVouchers" (voucherClick)="voucherClick($event)"></voucher-list>
     </div>

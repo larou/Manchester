@@ -17,7 +17,6 @@ export class VoucherService implements IStore<IVoucher> {
     private voucherFactory: VoucherFactory,
   ) {
   }
-<<<<<<< HEAD
 
   public getAllVouchers()  {
         
@@ -28,10 +27,6 @@ export class VoucherService implements IStore<IVoucher> {
    
   }
   public getFeatured(limit: number) {
-=======
-  
-  public getFeatured(limit: number ) {
->>>>>>> 6e8eb7aa704d028f94ce112b4df0e04f04df2262
     return this.af.database.list('/vouchers', {
       query: {
         orderByChild: 'featured',
@@ -39,27 +34,17 @@ export class VoucherService implements IStore<IVoucher> {
       },
     })
       .map((vouchers: IRawVoucher[]) => {
-<<<<<<< HEAD
 
-=======
-        
->>>>>>> 6e8eb7aa704d028f94ce112b4df0e04f04df2262
         return this.voucherFactory.fromRaw(vouchers)
           .filter(voucher => voucher.available)
           .filter(voucher => !voucher.disabled)
           .sort((a, b) => b.priority - a.priority)
           .slice(0, limit)
-<<<<<<< HEAD
 
       });
 
-=======
-          
-      });
-      
->>>>>>> 6e8eb7aa704d028f94ce112b4df0e04f04df2262
   }
-  
+
   public getById(id: string): Observable<IVoucher> {
     return this.af.database.object(`/vouchers/${id}`)
       .map(voucher => this.voucherFactory.fromRaw(voucher));

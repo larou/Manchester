@@ -20,14 +20,9 @@ const NUM_FEATURED_VOUCHERS = 10;
 })
 export class HomePage {
   @ViewChild(Slides) slides: Slides;
-<<<<<<< HEAD
   @ViewChild(Content) content: Content;
   loader : any
   myDate: String = new Date().toDateString()
-=======
-  loader : any
-  myDate: String = new Date().toDateString();
->>>>>>> 6e8eb7aa704d028f94ce112b4df0e04f04df2262
   endTime: any
   remaining: any
   myCurrentTime: any = new Date().getHours()
@@ -62,11 +57,6 @@ export class HomePage {
       });
       
   }
-<<<<<<< HEAD
-=======
- 
-  
->>>>>>> 6e8eb7aa704d028f94ce112b4df0e04f04df2262
   shuffleArray(array) {
     for (var i = array.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));

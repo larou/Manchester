@@ -1,12 +1,15 @@
-import { Component, Input } from '@angular/core';
+import { Component, Input ,Directive, HostListener, ElementRef,Injectable} from '@angular/core';
 import { NavController } from 'ionic-angular';
 
 import { IVenue } from '../../../../discovr';
 
 @Component({
-  selector: 'venue-details',
+  selector: 'venue-details', 
   templateUrl: 'venue-details.html'
-})
+  
+})  
+
+
 export class VenueDetails {
 
   @Input() venue: IVenue;
@@ -17,7 +20,6 @@ export class VenueDetails {
     social: false,
     opening: false,
   };
-
-  constructor(public navCtrl: NavController) {}
-
+  constructor(public navCtrl: NavController) {} 
 }
+

@@ -1,12 +1,15 @@
 <ion-list no-lines>
 
-  <ion-item *ngFor="let voucher of vouchers" class="menu-item small">
+  <ion-item *ngFor="let voucher of vouchers" class="menu-item small" text-wrap>
 
     <div class="list-icon" item-left></div>
 
     <div (click)="clickVoucher(voucher)">
       <h2>{{ voucher.title }}</h2>
       <p>{{ voucher.subtitle }}</p>
+      <p>startTime: {{voucher.availability.startTime}}</p>
+      <p>endTime: {{voucher.availability.endTime}}</p>
+      
     </div>
 
     <button ion-fab mini item-right (click)="clickSaveBtn(voucher)">

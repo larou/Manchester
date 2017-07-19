@@ -6,31 +6,27 @@
 
 <ion-content>
 
-  <!-- Page Header -->
+<!-- Page Header -->
 
-  <div class="page-cover no-button">
-    <div class="wave"></div>
+<div class="page-cover no-button">
+<div class="wave"></div>
 
     <div class="cover-title-content">
       <div class="cover-title">{{ subcategory.title }}</div>
       <div class="cover-desc">{{subcategory.subT}}</div>
     </div>
 
-  </div>
+</div>
 
-  <!-- End of Page Header -->
+<!-- End of Page Header -->
 
-  <div padding-horizontal>
+<div padding-horizontal>
 
-    <div class="small-title">Trending</div>
+  <div class="small-title">Trending</div>
 
-  <!--  <venue-slides [venues]="trending" (venueClick)="clickVenue($event)"></venue-slides> -->
-    <ion-slides spaceBetween="10" slidesOffsetBefore="16" class="discovr-slides">
-      <ion-slide *ngFor="let v of MyHotVoucher" (venueClick)="clickVenue($event)">
-        {{v}}
-      </ion-slide>
-    </ion-slides>
-    <div class="small-title">Places</div>
+  <venue-slides [venues]="trending" (venueClick)="clickVenue($event)"></venue-slides>
+
+  <div class="small-title">Places</div>
 
     <ion-segment [(ngModel)]="sortBy" (ionChange)="changeSort()">
       <ion-segment-button value="distance">Near Me</ion-segment-button>
@@ -38,20 +34,20 @@
       <ion-segment-button value="age">New</ion-segment-button>
     </ion-segment>
 
-    <ion-list no-lines>
-      <ion-item *ngFor="let venue of venues" (click)="clickVenue(venue)" class="menu-item small">
+  <ion-list no-lines>
+    <ion-item *ngFor="let venue of venues" (click)="clickVenue(venue)" class="menu-item small">
 
-        <div class="list-icon default" item-left></div>
-        <h2>{{ venue.name }}</h2>
-        <div [ngSwitch]="sortBy">
-          <p *ngSwitchCase="'distance'">{{ venue.getDistance() }}km away</p>
-          <p *ngSwitchCase="'alphabetical'">{{ venue.subtitle }}</p>
-          <p *ngSwitchCase="'age'">Added at {{ venue.createdAt | date }}</p>
-        </div>
+      <div class="list-icon default" item-left></div>
+      <h2>{{ venue.name }}</h2>
+      <div [ngSwitch]="sortBy">
+        <p *ngSwitchCase="'distance'">{{ venue.getDistance() }}km away</p>
+        <p *ngSwitchCase="'alphabetical'">{{ venue.subtitle }}</p>
+        <p *ngSwitchCase="'age'">Added at {{ venue.createdAt | date }}</p>
+      </div>
 
-        <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+      <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
 
-        <!--       <div item-right [ngSwitch]="sortBy">
+<!--       <div item-right [ngSwitch]="sortBy">
         <p *ngSwitchCase="'distance'">
           {{ venue.getDistance() }}km away
         </p>
@@ -60,9 +56,14 @@
         </p>
       </div> -->
 
-      </ion-item>
-    </ion-list>
+    </ion-item>
+  </ion-list>
+   <ion-slides   spaceBetween="10" slidesOffsetBefore="16" class="discovr-slides">
+        <ion-slide *ngFor="let v of Places" style="background-image:url(http://lorempixel.com/320/280/cats?45476)">
+          {{v.name}} 
+        </ion-slide>  
+      </ion-slides>  
 
-  </div>
+</div>
 
 </ion-content>

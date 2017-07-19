@@ -22,6 +22,7 @@ import { VenueSlides } from '../components/venue-slides/venue-slides';
 import { VoucherList } from '../components/voucher-list/voucher-list';
 import { VoucherSlides } from '../components/voucher-slides/voucher-slides';
 import { VenueDetails } from '../pages/venue/components/details/venue-details';
+
 import { VenueContactDetails } from '../pages/venue/components/details/components/venue-contact-details';
 import { VenuePhotos } from '../pages/venue/components/details/components/venue-photos';
 import { VenueOpeningTimes } from '../pages/venue/components/details/components/venue-opening-times';
@@ -51,6 +52,7 @@ import { DiscovrModule } from '../discovr';
     VoucherList,
     VoucherPage,
     VoucherSlides,
+  
   ],
   imports: [
     BrowserModule,

@@ -76,6 +76,7 @@ export class ExplorePage {
             title: category.$key
           }
         })
+
     }
   }
 

@@ -1,8 +1,9 @@
-<ion-list no-lines>
-  <ion-item *ngFor="let contact of contacts" class="menu-item small">
+<ion-list *ngFor="let contact of contacts" no-lines>  
+  <ion-item  *ngIf="contact.details" class="menu-item small">
     <div class="list-icon" item-left></div>
     <h2>{{ contact.title }}</h2>
     <p>{{ contact.details }}</p>
-     <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
+    <a *ngIf="contact.title == 'Directions'" button href="geo://?q=location" target="_system">Map</a>    
+    <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
   </ion-item>
 </ion-list>
