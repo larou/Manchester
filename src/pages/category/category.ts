@@ -46,7 +46,7 @@ export class CategoryPage implements AfterViewInit {
   }
 
   public clickVenue(venue) {
-    this.navCtrl.push(VenuePage, {venue: venue , location: venue.location});
+    this.navCtrl.push(VenuePage, {venue: venue , location: venue.location , places : this.Places});
     
   }
 //get places 

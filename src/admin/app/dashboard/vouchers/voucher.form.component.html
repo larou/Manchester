@@ -48,13 +48,13 @@
                 <div class="col-md-6">
                   <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.availability.endTime}">
                     <label class="control-label">End Time</label>
-                      <input type="time" name="endTime" class="form-control" [(ngModel)]="voucher.availability.endTime">
+                      <input type="time" name="availability.endTime" class="form-control" [(ngModel)]="voucher.availability.endTime">
                   </div>
                 </div>
                 <div class="col-md-6">
                   <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.availability.startTime}">
                     <label class="control-label">start Time</label>
-                      <input type="time" name="startTime" class="form-control" [(ngModel)]="voucher.availability.startTime">
+                      <input type="time" name="availability.startTime" class="form-control" [(ngModel)]="voucher.availability.startTime">
                   </div>
                 </div>
               </div>
@@ -84,7 +84,7 @@
                   <div class="form-group">
                     <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.image}">
                       <label class="control-label">Image URL</label>
-                       <input type="text" name="image" class="form-control" [(ngModel)]="voucher.image" required>
+                       <input type="text" name="image" class="form-control" [(ngModel)]="voucher.image" require>
                     </div>
                   </div>
                 </div>

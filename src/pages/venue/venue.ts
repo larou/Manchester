@@ -17,6 +17,7 @@ export class VenuePage implements OnInit {
   public otherVouchers: IVoucher[];
   public check: boolean ;
   public arr : any ;
+  Places : Array<any> ;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
@@ -25,6 +26,7 @@ export class VenuePage implements OnInit {
     this.venue = navParams.get('venue');
     console.debug('Venue page', this.venue);
     this.location = navParams.get('location')
+    this.Places = navParams.get('places');
     
   }
   public ngOnInit() {
