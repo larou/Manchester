@@ -24,8 +24,10 @@ export class HomePage {
   loader : any
   myDate: String = new Date().toDateString()
   endTime: any
+  startTime:any
   remaining: any
-  myCurrentTime: any = new Date().getHours()
+  myCurrentTime: any =new Date().getHours()
+  b:boolean;
   public MyHotVoucher: any[] = [];
   public latestNews: Observable<INews[]>;
   public hotVouchers: Observable<IVoucher[]>;
@@ -48,11 +50,20 @@ export class HomePage {
     this.voucherService.getDailyVoucher()
       .subscribe((voucher) => {
         this.endTime = voucher.availability.endTime;
-        this.endTime = this.endTime.split(":")[0]
-        // console.log(this.timer.split(":")[0])
-
-        this.remaining = this.endTime - this.myCurrentTime
-          console.log(this.remaining)
+        this.endTime = this.endTime.split(":")[0];
+        this.startTime=voucher.availability.startTime;
+        this.startTime=this.startTime.split(":")[0];
+        if((this.myCurrentTime>=this.endTime) || (this.myCurrentTime < this.startTime))
+        {
+          this.remaining='closed';
+          this.b=false;
+        }
+        else{
+          this.remaining = this.endTime - this.myCurrentTime
+          this.b=true;
+        }
+        
+          console.log(this.remaining);
 
       });
       

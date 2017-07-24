@@ -52,7 +52,8 @@ export interface IRawVenue {
       open: string;
       close: string;
     }
-  }
+  };
+  
 }
 
 export interface IVenue extends IRawVenue {

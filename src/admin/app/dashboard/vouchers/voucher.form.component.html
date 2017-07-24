@@ -27,6 +27,37 @@
                   </div>
                 </div>
               </div>
+               <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.availability.days}">
+                  <!-- press ctrl to select multiple options -->
+                    <label class="control-label">Days</label>
+                      <select name="days" class="form-control" [(ngModel)]="voucher.availability.days" multiple>
+                      <option value="mon">Monday</option>
+                      <option value="tue">Tuesday</option>
+                      <option value="wed">Wednesday</option>
+                      <option value="thu">Thursday</option>
+                      <option value="fri">Friday</option>
+                      <option value="sat">Saturday</option>
+                      <option value="sun">Sunday</option>
+                      </select>
+                  </div>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-md-6">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.availability.endTime}">
+                    <label class="control-label">End Time</label>
+                      <input type="time" name="endTime" class="form-control" [(ngModel)]="voucher.availability.endTime">
+                  </div>
+                </div>
+                <div class="col-md-6">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.availability.startTime}">
+                    <label class="control-label">start Time</label>
+                      <input type="time" name="startTime" class="form-control" [(ngModel)]="voucher.availability.startTime">
+                  </div>
+                </div>
+              </div>
 
               <div class="row">
                 <div class="col-md-4">
@@ -48,7 +79,16 @@
                   </div>
                 </div>
               </div>
-
+              <div class="row">
+                <div class="col-md-12">
+                  <div class="form-group">
+                    <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.image}">
+                      <label class="control-label">Image URL</label>
+                       <input type="text" name="image" class="form-control" [(ngModel)]="voucher.image" required>
+                    </div>
+                  </div>
+                </div>
+              </div>
               <div class="row">
                 <div class="col-md-12">
                   <div class="form-group">

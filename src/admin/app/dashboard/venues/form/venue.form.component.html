@@ -112,6 +112,12 @@
                     <input type="text" name="social[1].details" class="form-control" [(ngModel)]="venue.social[1].details">
                   </div>
                 </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.social[2].details }">
+                    <label class="control-label">Message</label>
+                    <input type="text" name="social[2].details" class="form-control" [(ngModel)]="venue.social[2].details">
+                  </div>
+                </div>
               </div>
 
               <div class="row" *ngFor="let photo of venue.photos; let i = index">

@@ -53,10 +53,12 @@ export class LocationService {
    * but either can be updated partially later.
    */
   public setLocation({center, radius}: {center?: LatLngLiteral, radius?: number}): this {
-    this.currentLocation.center = center ? [center.lat, center.lng] : this.currentLocation.center;
+
+      this.currentLocation.center = center ? [center.lat%180, center.lng%180] : this.currentLocation.center;
     this.currentLocation.radius = radius || this.currentLocation.radius;
     if (this.isReady()) {
       if (this.geoQuery) {
+     
         this.geoQuery.updateCriteria(this.currentLocation);
       } else {
         const geoFire = new GeoFire(this.af.database.list('/locations').$ref);

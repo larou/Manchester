@@ -3,7 +3,7 @@
     <div class="list-icon" item-left></div>
     <h2>{{ contact.title }}</h2>
     <p>{{ contact.details }}</p>
-    <a *ngIf="contact.title == 'Directions'" button href="geo://?q=location" target="_system">Map</a>    
+    <button *ngIf="contact.title == 'Directions'" (click)="navigate()" target="_system">Map</button>    
     <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
   </ion-item>
 </ion-list>

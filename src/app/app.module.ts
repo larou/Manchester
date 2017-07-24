@@ -74,6 +74,7 @@ import { DiscovrModule } from '../discovr';
     RadioPage,
     VenuePage,
     VoucherPage,
+    VenuePopover
   ],
   providers: [
     {provide: ErrorHandler, useClass: IonicErrorHandler},

@@ -26,14 +26,13 @@ export class VenuePage implements OnInit {
     console.debug('Venue page', this.venue);
     this.location = navParams.get('location')
     
-    
   }
   public ngOnInit() {
     this.voucherService.getByVenue(this.venue)
       .subscribe(vouchers => {
        // console.log(vouchers)
         this.availableVouchers = vouchers.filter(voucher => voucher.available);
-        console.log(this.availableVouchers)
+        //console.log(this.availableVouchers)
         this.otherVouchers = vouchers.filter(voucher => !voucher.available);
       });
   }

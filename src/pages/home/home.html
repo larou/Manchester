@@ -42,7 +42,7 @@
     <ion-item (click)="goToDailyVoucherPage()" class="menu-item">
       <div class="list-icon timer" item-left></div>
       <h2>Daily Voucher</h2>
-      <p>{{remaining}} Hours Remaining</p>
+      <p>{{remaining}}</p><p *ngIf="b"> Hours Remaining</p>
 
       <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
     </ion-item>

@@ -9,20 +9,18 @@ import { NavController, NavParams } from 'ionic-angular';
 export class VenueContactDetails {
   @Input() contacts;
   public location: any ;
-  public query : string;
-  public lat : any;
-  public long: any;
-  public encodedQuery: string;
+  lat : any;
+  lng : any;
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams) {
     
     this.location = this.navParams.get('location')
     this.lat = this.location.lat;
-    this.long = this.location.lng
-    this.query = this.lat + "," + this.long
-    this.encodedQuery = encodeURI(this.query)
-    
+    this.lng = this.location.lng;  
+  }
 
+  navigate() {
+    window.open("https://www.google.com/maps/search/?api=1&query=" +this.lat+","+this.lng);
   }
 }

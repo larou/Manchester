@@ -6,7 +6,7 @@ import { LoadingController } from 'ionic-angular';
 import LatLngLiteral = google.maps.LatLngLiteral;
 
 import { IVenue, LocationService, VenueService } from '../../../discovr';
-
+declare var GeoFire: any;
 @Component({
   selector: 'googlemap',
   template: '<div #map id="map"></div>'
@@ -16,6 +16,7 @@ export class GooglemapComponent implements AfterViewInit {
   @Output() markerClick = new EventEmitter<IVenue>();
 
   private map: google.maps.Map;
+  marker : any 
 
   constructor(
     private geolocation: Geolocation,
@@ -41,17 +42,21 @@ export class GooglemapComponent implements AfterViewInit {
   }
 
   private loadMap({latitude: lat, longitude: lng}: {latitude: number, longitude: number}) {
+    
     const center = {lat, lng};
-    this.map = new google.maps.Map(document.getElementById('map'), {
-      center,
-      zoom: 12,
-      streetViewControl: false,
-    });
+    let mapOptions = {
+      center : center,
+      streetViewControl: false,      
+      zoom: 12
+    }
+
+    this.map = new google.maps.Map(document.getElementById('map'),mapOptions);
 
     const onLoadListener = this.map.addListener('bounds_changed', () => {
       this.locationService.setLocation({center, radius: calculateRadius(this.map)});
       this.venueService.getNearby()
-        .distinct(venue => venue.$key)
+        .distinct(venue => {
+          venue.$key})
         .subscribe((venue: IVenue) => this.addVenueToMap(venue));
       onLoadListener.remove();
     });
@@ -67,7 +72,7 @@ export class GooglemapComponent implements AfterViewInit {
   }
 
   private addVenueToMap(venue: IVenue) {
-    new google.maps.Marker({
+   this.marker = new google.maps.Marker({
       animation: google.maps.Animation.DROP,
       title: venue.name,
       position: {lat: venue.location.lat, lng: venue.location.lng},
@@ -80,9 +85,11 @@ export class GooglemapComponent implements AfterViewInit {
         scale: 16,
       },
     })
-      .addListener('click', () => {
+    google.maps.event.addListener(this.marker ,'click', () => {
+        
         this.map.setCenter(venue.location);
         this.markerClick.emit(venue);
+        
       });
   }
 }
@@ -90,5 +97,6 @@ export class GooglemapComponent implements AfterViewInit {
 function calculateRadius(map): number {
   const center: LatLngLiteral = map.getCenter().toJSON();
   const neCorner: LatLngLiteral = map.getBounds().getNorthEast().toJSON();
-  return GeoFire.distance([neCorner.lat, neCorner.lng], [center.lat, center.lng]);
+   
+  return GeoFire.distance([ neCorner.lat, neCorner.lng], [center.lat, center.lng]);
 }
