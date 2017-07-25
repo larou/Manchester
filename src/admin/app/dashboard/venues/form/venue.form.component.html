@@ -1,5 +1,6 @@
 <div class="main-content">
   <div class="container-fluid">
+
     <div class="row">
       <div class="col-md-8">
         <div class="card">
@@ -8,6 +9,7 @@
             <p class="category">Complete your profile</p>
           </div>
           <div class="card-content">
+             
             <form #f="ngForm" (ngSubmit)="onSubmit(f)" novalidate>
 
               <div class="row">
@@ -16,10 +18,10 @@
                     <label class="control-label">Category</label>
                     <select class="form-control" [(ngModel)]="venue.category" name="category" (change)="changeCategory($event.target.value)" required>
                       <option></option>
-                      <option *ngFor="let category of categories">{{ category.$key }}</option>
+                      <option *ngFor="let category of categories" >{{ category.$key }}</option>
                     </select>
                   </div>
-                </div>
+                </div>              
                 <div class="col-md-6">
                   <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.subcategory }">
                     <label class="control-label">Subcategory</label>
@@ -64,7 +66,24 @@
                 </div>
                 <div class="col-md-4"></div>
               </div>
+            
+              <div class="row" *ngFor="let day of TabDays">
+                <p class="col-md-2"> {{day}}</p>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day].close}">
+                   <label class="control-label">close</label>
+                    <input type="text" name="openingTimes[day].close" class="form-control" [(ngModel)]="venue.openingTimes[day].close">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day].open}">
+                  <label class="control-label">open</label>
+                   <input type="text" name="openingTimes[day].open" class="form-control" [(ngModel)]="venue.openingTimes[day].open">
+                  </div>
+                </div>
+              </div>
 
+             
               <div class="row">
                 <div class="col-md-4">
                   <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.location.lat }">
@@ -112,10 +131,17 @@
                     <input type="text" name="social[1].details" class="form-control" [(ngModel)]="venue.social[1].details">
                   </div>
                 </div>
+
                 <div class="col-md-4">
                   <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.social[2].details }">
                     <label class="control-label">Message</label>
                     <input type="text" name="social[2].details" class="form-control" [(ngModel)]="venue.social[2].details">
+                  </div>
+                </div>
+                 <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.social[3].details }">
+                    <label class="control-label">Instagram</label>
+                    <input type="text" name="social[3].details" class="form-control" [(ngModel)]="venue.social[3].details">
                   </div>
                 </div>
               </div>
@@ -156,4 +182,6 @@
       </div>
     </div>
   </div>
-</div>
+ </div>
+
+

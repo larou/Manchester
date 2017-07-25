@@ -4,6 +4,15 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Observable } from 'rxjs/Observable';
 
 import { CategoryService, ICategory, ISubCategory, IVenue, VenueService } from '../../../../../discovr';
+const HUMANIZED_DAYS = {
+  'sun': 'Sunday',
+  'mon': 'Monday',
+  'tue': 'Tuesday',
+  'wed': 'Wednesday',
+  'thu': 'Thursday',
+  'fri': 'Friday',
+  'sat': 'Saturday',
+};
 
 @Component({
   selector: 'user-cmp',
@@ -21,10 +30,13 @@ export class VenueFormComponent implements OnInit {
     social: [
       {title: 'Facebook'},
       {title: 'Snapchat'},
+      {title: 'Instagram'},
     ],
     photos: [],
   } as IVenue;
 
+  public TabDays: Array<any> ; 
+  public days:Array<any>;
   constructor(
     private venueService: VenueService,
     private categoryService: CategoryService,
@@ -36,7 +48,8 @@ export class VenueFormComponent implements OnInit {
     this.categoryService.get()
       .switchMap((categories) => {
         this.categories = categories;
-        return this.route.params;
+          return this.route.params;
+
       })
       .filter(params => params.id)
       .switchMap(params => this.venueService.getById(params.id))
@@ -45,6 +58,9 @@ export class VenueFormComponent implements OnInit {
         return this.changeCategory(venue.category).mapTo(venue)
       })
       .subscribe(venue => this.venue = venue);
+
+      this.TabDays = ["mon","tue","thu","wed","fri","sat","sun"];
+      this.days=["Monday","Tuesday","Thursday","Friday","Saturday","Sunday"];
   }
 
   public addPhoto() {
@@ -52,6 +68,7 @@ export class VenueFormComponent implements OnInit {
   }
 
   public onSubmit(form: NgForm) {
+    
     console.log('SUBMIT', form, form.valid, this.venue);
     if (form.valid) {
       this.venue.photos = this.venue.photos.filter(imgUrl => imgUrl);
@@ -70,5 +87,6 @@ export class VenueFormComponent implements OnInit {
     return this.subcategories = this.categoryService.get(category)
       .map((subcategories) => subcategories.filter(subcategory => subcategory.$key !== '!subtitle'));
   }
+
 
 }

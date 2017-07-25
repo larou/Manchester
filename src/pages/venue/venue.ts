@@ -24,7 +24,7 @@ export class VenuePage implements OnInit {
     private voucherService: VoucherService,
   ) {
     this.venue = navParams.get('venue');
-    console.debug('Venue page', this.venue);
+    console.log('Venue page', this.venue);
     this.location = navParams.get('location')
     this.Places = navParams.get('places');
     
