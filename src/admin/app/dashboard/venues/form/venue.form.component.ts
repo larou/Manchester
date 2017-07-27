@@ -33,10 +33,12 @@ export class VenueFormComponent implements OnInit {
       {title: 'Instagram'},
     ],
     photos: [],
+    openingTimes : {}
   } as IVenue;
 
   public TabDays: Array<any> ; 
   public days:Array<any>;
+  public ListCat : any ;
   constructor(
     private venueService: VenueService,
     private categoryService: CategoryService,
@@ -59,8 +61,16 @@ export class VenueFormComponent implements OnInit {
       })
       .subscribe(venue => this.venue = venue);
 
-      this.TabDays = ["mon","tue","thu","wed","fri","sat","sun"];
-      this.days=["Monday","Tuesday","Thursday","Friday","Saturday","Sunday"];
+      this.TabDays = [{name:"Monday",value:"mon"},
+                      {name:"Tuesday",value:"tue"},
+                      {name:"Thursday",value:"thu"},
+                      {name:"Wednesday",value:"wed"},
+                      {name:"Friday",value:"fri"},
+                      {name:"Saturday",value:"sat"},
+                      {name:"Sunday",value:"sun"}];
+     
+
+      
   }
 
   public addPhoto() {

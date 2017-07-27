@@ -85,7 +85,7 @@ export class VenueService implements IStore<IVenue> {
     if (venue.createdAt === undefined) {
       venue.createdAt = moment().toISOString();
     }
-    const clone = Object.assign({}, venue);
+    const clone = (<any>Object).assign({}, venue);
     delete clone.$key;
     console.log('Saving venue', venue);
     return this.af.database.object(`/venues/${venue.$key}`)

@@ -43,4 +43,8 @@ export class VenuePage implements OnInit {
    // voucher.venue = this.venue;
     this.navCtrl.push(VoucherPage, { voucher : voucher });
   }
+   public clickVenue(venue) {
+    this.navCtrl.push(VenuePage, {venue: venue , location: venue.location , places : this.Places});
+    
+  }
 }

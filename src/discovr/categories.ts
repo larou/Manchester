@@ -19,6 +19,10 @@ export class CategoryService {
 
   }
 
- 
+ public getAll():FirebaseListObservable<ICategory[]> {
+
+ 	   return this.af.database.list(`/categories/`)
+
+ }
  
 }

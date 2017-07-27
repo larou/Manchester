@@ -59,8 +59,9 @@ export class VoucherService implements IStore<IVoucher> {
       voucher = voucher.toRaw();
     }
     console.log('Saving voucher', voucher);
-    const clone = Object.assign({}, voucher);
+    const clone = (<any>Object).assign({}, voucher);
     delete clone.$key;
+    console.log("keeey" , clone.$key)
     return this.af.database.object(`/vouchers/${voucher.$key}`)
       .update(clone);
   }

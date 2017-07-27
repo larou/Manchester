@@ -66,19 +66,19 @@
                 </div>
                 <div class="col-md-4"></div>
               </div>
-            
+           
               <div class="row" *ngFor="let day of TabDays">
-                <p class="col-md-2"> {{day}}</p>
+                <p class="col-md-2"> {{day.name}}</p>
                 <div class="col-md-4">
-                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day].close}">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day.value].close}">
                    <label class="control-label">close</label>
-                    <input type="text" name="openingTimes[day].close" class="form-control" [(ngModel)]="venue.openingTimes[day].close">
+                    <input type="time" name="openingTimes[day.value].close" class="form-control" [(ngModel)]="venue.openingTimes[day.value].close">
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day].open}">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day.value].open}">
                   <label class="control-label">open</label>
-                   <input type="text" name="openingTimes[day].open" class="form-control" [(ngModel)]="venue.openingTimes[day].open">
+                   <input type="time" name="openingTimes[day.value].open" class="form-control" [(ngModel)]="venue.openingTimes[day.value].open">
                   </div>
                 </div>
               </div>

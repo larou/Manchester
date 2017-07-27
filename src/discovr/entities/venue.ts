@@ -47,7 +47,7 @@ export class Venue implements IVenue {
   ) {
     this.$key = fromFirebase.$key;
     const [category, subcategory] = this.$key.split('|||');
-    Object.assign(this, {category, subcategory}, fromFirebase);
+    (<any>Object).assign(this, {category, subcategory}, fromFirebase);
   };
 
   /**
@@ -58,7 +58,7 @@ export class Venue implements IVenue {
   }
 
   public toRaw(): IVenue {
-    const clone = Object.assign({} ,this);
+    const clone = (<any>Object).assign({} ,this);
     delete clone.locationService;
     return clone;
   }

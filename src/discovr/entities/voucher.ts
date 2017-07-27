@@ -45,7 +45,7 @@ export class Voucher implements IVoucher {
               private venueService: VenueService,
               private voucherStorage: VoucherStorage,
               ) {
-    Object.assign(this, fromFirebase);
+    (<any>Object).assign(this, fromFirebase);
     this.$key = fromFirebase.$key;
     this.venue = this.venueService.getById(this.venueId);
   }
