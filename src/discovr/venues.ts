@@ -73,6 +73,8 @@ export class VenueService implements IStore<IVenue> {
    * @returns {firebase.Promise<any>|firebase.Thenable<any>}
    */
   public save(venue: IRawVenue|IVenue) {
+        console.log("hello");
+
     if (venue instanceof Venue) {
       venue = venue.toRaw();
     }

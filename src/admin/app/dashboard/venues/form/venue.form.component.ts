@@ -81,7 +81,8 @@ export class VenueFormComponent implements OnInit {
     
     console.log('SUBMIT', form, form.valid, this.venue);
     if (form.valid) {
-      this.venue.photos = this.venue.photos.filter(imgUrl => imgUrl);
+      if(this.venue.photos)
+          this.venue.photos = this.venue.photos.filter(imgUrl => imgUrl);
       this.venueService.save(this.venue)
         .then(() => {
           this.router.navigate(['venues']);
