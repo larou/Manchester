@@ -71,9 +71,9 @@
     <div *ngIf="(MyHotVoucher)?.length > 0">
       <div class="small-title">Hot Vouchers</div>
       <ion-slides   spaceBetween="10" slidesOffsetBefore="16" class="discovr-slides">
-        <ion-slide *ngFor="let v of MyHotVoucher" (voucherClick)="clickVoucher($event)" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
+        <ion-slide *ngFor="let v of MyHotVoucher" (click)="clickVoucher($event,v)" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
           <!-- <voucher-slides  [vouchers]="hotVouchers | async" (voucherClick)="clickVoucher($event)"></voucher-slides> -->
-          {{v}}
+          {{v.title}}
           
         </ion-slide>  
       </ion-slides>  
@@ -93,7 +93,7 @@
     <div class="small-title">News & Stories</div>
 
     <ion-slides spaceBetween="10" slidesOffsetBefore="16" class="discovr-slides" options="{'loop':false}">
-      <ion-slide *ngFor="let newsItem of latestNews | async" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
+      <ion-slide *ngFor="let newsItem of latestNews | async"     (click)="NewsBrowser(newsItem.url)"          style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg)">
 
         <div class="slide-overlay">
           <div class="overlay-back" style="background-image:url(http://i4.mirror.co.uk/incoming/article10161258.ece/ALTERNATES/s1200/Wayne-Rooney-File-Photo.jpg) no-repeat"></div>

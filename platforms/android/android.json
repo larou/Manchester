@@ -33,6 +33,10 @@
                         {
                             "xml": "<feature name=\"SQLitePlugin\"><param name=\"android-package\" value=\"io.sqlc.SQLitePlugin\" /></feature>",
                             "count": 1
+                        },
+                        {
+                            "xml": "<feature name=\"InAppBrowser\"><param name=\"android-package\" value=\"org.apache.cordova.inappbrowser.InAppBrowser\" /></feature>",
+                            "count": 1
                         }
                     ]
                 }
@@ -47,6 +51,9 @@
             "PACKAGE_NAME": "com.ionicframework.discovr231181"
         },
         "cordova-sqlite-storage": {
+            "PACKAGE_NAME": "com.ionicframework.discovr231181"
+        },
+        "cordova-plugin-inappbrowser": {
             "PACKAGE_NAME": "com.ionicframework.discovr231181"
         }
     },
@@ -73,11 +80,21 @@
             "clobbers": [
                 "SQLitePlugin"
             ]
+        },
+        {
+            "id": "cordova-plugin-inappbrowser.inappbrowser",
+            "file": "plugins/cordova-plugin-inappbrowser/www/inappbrowser.js",
+            "pluginId": "cordova-plugin-inappbrowser",
+            "clobbers": [
+                "cordova.InAppBrowser.open",
+                "window.open"
+            ]
         }
     ],
     "plugin_metadata": {
         "cordova-plugin-compat": "1.1.0",
         "cordova-plugin-geolocation": "2.4.3",
-        "cordova-sqlite-storage": "2.0.4"
+        "cordova-sqlite-storage": "2.0.4",
+        "cordova-plugin-inappbrowser": "1.7.1"
     }
 }

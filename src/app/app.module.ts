@@ -5,7 +5,7 @@ import { Geolocation } from '@ionic-native/geolocation';
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
 import { IonicStorageModule } from '@ionic/storage';
-
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 import { MyApp } from './app.component';
 
 import { CategoryPage } from '../pages/category/category';
@@ -81,6 +81,7 @@ import { DiscovrModule } from '../discovr';
     Geolocation,
     StatusBar,
     SplashScreen,
+    InAppBrowser
   ],
 })
 export class AppModule {}

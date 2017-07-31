@@ -1,5 +1,6 @@
 import { Component, Input } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 
 @Component({
@@ -11,9 +12,11 @@ export class VenueContactDetails {
   public location: any ;
   lat : any;
   lng : any;
+  url:string;
   constructor(
     private navCtrl: NavController,
-    private navParams: NavParams) {
+    private navParams: NavParams,
+    private iab: InAppBrowser) {
     
     this.location = this.navParams.get('location')
     this.lat = this.location.lat;
@@ -21,6 +24,9 @@ export class VenueContactDetails {
   }
 
   navigate() {
-    window.open("https://www.google.com/maps/search/?api=1&query=" +this.lat+","+this.lng);
+
+    this.url= "https://www.google.com/maps/search/?api=1&query="+this.lat+","+this.lng;
+    const browser = this.iab.create(this.url,'_self');
+    //window.open("https://www.google.com/maps/search/?api=1&query=" +this.lat+","+this.lng);
   }
 }

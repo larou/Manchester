@@ -81,7 +81,7 @@ export class ExplorePage {
   }
 
   public clickVoucher(voucher) {
-    this.navCtrl.push(VoucherPage, { voucher });
+    this.navCtrl.push(VoucherPage, { voucher:voucher });
   }
 
 }

@@ -39,7 +39,8 @@
 
     <div *ngIf="(hotVouchers | async)?.length > 0">
       <div class="small-title">{{ title }} Vouchers</div>
-      <voucher-slides [vouchers]="hotVouchers | async" (voucherClick)="clickVoucher($event)"></voucher-slides>
+
+      <voucher-slides [vouchers]="hotVouchers | async" ></voucher-slides>
     </div>
 
   </div>

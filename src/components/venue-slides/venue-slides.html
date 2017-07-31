@@ -1,6 +1,6 @@
 <ion-slides class="discovr-slides" loop pager>
-  <ion-slide *ngFor="let venue of venues | async">
-    <ion-card (click)="venueClick.emit(venue)">
+  <ion-slide *ngFor="let venue of venues | async" > 
+    <ion-card (click)="venueClick.emit(venue)" >
       <!-- <img [src]="venue.photos[0]"> -->
       <ion-card-content>
         <ion-card-title>{{ venue.name }}</ion-card-title>

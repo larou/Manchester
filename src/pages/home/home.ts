@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, LoadingController } from 'ionic-angular';
 import { Observable } from 'rxjs';
+import { InAppBrowser } from '@ionic-native/in-app-browser';
 
 import { MyVouchersPage } from '../my-vouchers/my-vouchers';
 import { NearbyPage } from '../nearby/nearby';
@@ -32,19 +33,22 @@ export class HomePage {
   public latestNews: Observable<INews[]>;
   public hotVouchers: Observable<IVoucher[]>;
   constructor(private navCtrl: NavController,
-    private voucherService: VoucherService,
-    private loadingCtrl: LoadingController,
-    newsService: NewsService,
+              private voucherService: VoucherService,
+              private loadingCtrl: LoadingController,
+                      newsService: NewsService,
+              private iab: InAppBrowser
   ) {
     this.latestNews = newsService.get();
+    console.log('latestNews:',this.latestNews);
     this.hotVouchers = this.voucherService.getFeatured(NUM_FEATURED_VOUCHERS)
     this.hotVouchers.subscribe(users => {
       for (let i = 0; i < users.length; i++) {
         let obj = users[i]
-        this.MyHotVoucher.push(obj['title'])
+        this.MyHotVoucher.push(obj)
 
       }
       this.MyHotVoucher = this.shuffleArray(this.MyHotVoucher)
+      console.log('hot vochers: ',this.MyHotVoucher);
     });
 
     this.voucherService.getDailyVoucher()
@@ -66,6 +70,8 @@ export class HomePage {
           console.log(this.remaining);
 
       });
+
+
       
   }
   shuffleArray(array) {
@@ -117,7 +123,13 @@ export class HomePage {
       .subscribe((vouchers) => this.navCtrl.push(MyVouchersPage, { vouchers }));
   }
 
-  clickVoucher(voucher) {
-    this.navCtrl.push(VoucherPage, { voucher });
+  NewsBrowser(url:string){
+     
+     const browser = this.iab.create(url,'_self');
+
+  }
+
+  clickVoucher($event,voucher) {
+    this.navCtrl.push(VoucherPage, {voucher:voucher} );
   }
 }
