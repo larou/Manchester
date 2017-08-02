@@ -66,23 +66,121 @@
                 </div>
                 <div class="col-md-4"></div>
               </div>
-           
-              <div class="row" *ngFor="let day of TabDays">
-                <p class="col-md-2"> {{day.name}}</p>
+         <!-- hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
+              <div class="row" >
+                <p class="col-md-2"> Monday</p>
                 <div class="col-md-4">
-                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day.value].close}">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.mon.close}">
                    <label class="control-label">close</label>
-                    <input type="time" name="openingTimes[day.value].close" class="form-control" [(ngModel)]="venue.openingTimes[day.value].close">
+                    <input type="time" name="openingTimes.mon.close" class="form-control" [(ngModel)]="venue.openingTimes.mon.close">
                   </div>
                 </div>
                 <div class="col-md-4">
-                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes[day.value].open}">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.mon.open}">
                   <label class="control-label">open</label>
-                   <input type="time" name="openingTimes[day.value].open" class="form-control" [(ngModel)]="venue.openingTimes[day.value].open">
+                   <input type="time" name="openingTimes.mon.open" class="form-control" [(ngModel)]="venue.openingTimes.mon.open">
                   </div>
                 </div>
               </div>
 
+              <div class="row" >
+                <p class="col-md-2"> Tuesday</p>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.tue.close}">
+                   <label class="control-label">close</label>
+                    <input type="time" name="openingTimes.tue.close" class="form-control" [(ngModel)]="venue.openingTimes.tue.close">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.tue.open}">
+                  <label class="control-label">open</label>
+                   <input type="time" name="openingTimes.tue.open" class="form-control" [(ngModel)]="venue.openingTimes.tue.open">
+                  </div>
+                </div>
+              </div>
+
+                <div class="row" >
+                <p class="col-md-2"> Thursday</p>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.thu.close}">
+                   <label class="control-label">close</label>
+                    <input type="time" name="openingTimes.thu.close" class="form-control" [(ngModel)]="venue.openingTimes.thu.close">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.thu.open}">
+                  <label class="control-label">open</label>
+                   <input type="time" name="openingTimes.thu.open" class="form-control" [(ngModel)]="venue.openingTimes.thu.open">
+                  </div>
+                </div>
+              </div>
+
+                <div class="row" >
+                <p class="col-md-2"> Wednesday</p>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.wed.close}">
+                   <label class="control-label">close</label>
+                    <input type="time" name="openingTimes.wed.close" class="form-control" [(ngModel)]="venue.openingTimes.wed.close">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.wed.open}">
+                  <label class="control-label">open</label>
+                   <input type="time" name="openingTimes.wed.open" class="form-control" [(ngModel)]="venue.openingTimes.wed.open">
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="row" >
+                <p class="col-md-2"> Friday</p>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.fri.close}">
+                   <label class="control-label">close</label>
+                    <input type="time" name="openingTimes.fri.close" class="form-control" [(ngModel)]="venue.openingTimes.fri.close">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.fri.open}">
+                  <label class="control-label">open</label>
+                   <input type="time" name="openingTimes.fri.open" class="form-control" [(ngModel)]="venue.openingTimes.fri.open">
+                  </div>
+                </div>
+              </div>
+
+
+                <div class="row" >
+                <p class="col-md-2"> Saturday</p>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.sat.close}">
+                   <label class="control-label">close</label>
+                    <input type="time" name="openingTimes.sat.close" class="form-control" [(ngModel)]="venue.openingTimes.sat.close">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.sat.open}">
+                  <label class="control-label">open</label>
+                   <input type="time" name="openingTimes.sat.open" class="form-control" [(ngModel)]="venue.openingTimes.sat.open">
+                  </div>
+                </div>
+              </div>
+
+                <div class="row" >
+                <p class="col-md-2"> Sunday</p>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.sun.close}">
+                   <label class="control-label">close</label>
+                    <input type="time" name="openingTimes.sun.close" class="form-control" [(ngModel)]="venue.openingTimes.sun.close">
+                  </div>
+                </div>
+                <div class="col-md-4">
+                  <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !venue?.openingTimes.sun.open}">
+                  <label class="control-label">open</label>
+                   <input type="time" name="openingTimes.sun.open" class="form-control" [(ngModel)]="venue.openingTimes.sun.open">
+                  </div>
+                </div>
+              </div>
+<!-- hhhhhhhhhhhhhhhhhhhhhhhhhhhhhhh-->
              
               <div class="row">
                 <div class="col-md-4">

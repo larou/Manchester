@@ -23,18 +23,36 @@ export class VenueFormComponent implements OnInit {
   public categories: ICategory[];
   public subcategories: Observable<ISubCategory[]>;
   public venue: IVenue = {
-    location: {},
+    location: {lat:0,lng:0},
     contacts: [
-      {title: 'Call'},
+      {title: 'Call',details:''},
     ],
     social: [
-      {title: 'Facebook'},
-      {title: 'Snapchat'},
-      {title: 'Instagram'},
+      {title: 'Facebook',details:''},
+      {title: 'Snapchat',details:''},
+      {title: 'Instagram',details:''},
+      {title: 'Message',details:''},
     ],
     photos: [],
-    openingTimes : {}
-  } as IVenue;
+    openingTimes :{
+      "mon":{open: '',
+             close: ''},
+    "tue":{open: '',
+             close: ''},
+    "thu":{open: '',
+             close: ''},
+    "wed":{open: '',
+             close: ''},
+    "fri":{open: '',
+             close: ''},
+    "sat":{open: '',
+             close: ''},
+    "sun":{open: '',
+             close: ''}
+
+    }
+    
+  } as IVenue  ;
 
   public TabDays: Array<any> ; 
   public days:Array<any>;
@@ -83,6 +101,7 @@ export class VenueFormComponent implements OnInit {
     if (form.valid) {
       if(this.venue.photos)
           this.venue.photos = this.venue.photos.filter(imgUrl => imgUrl);
+        
       this.venueService.save(this.venue)
         .then(() => {
           this.router.navigate(['venues']);

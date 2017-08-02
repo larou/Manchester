@@ -27,19 +27,15 @@
                   </div>
                 </div>
               </div>
+
+
                <div class="row">
                 <div class="col-md-12">
                   <div class="form-group form-black label-floating" [ngClass]="{ 'is-empty': !voucher?.availability.days}">
                   <!-- press ctrl to select multiple options -->
                     <label class="control-label">Days</label>
-                      <select name="days" class="form-control" [(ngModel)]="voucher.availability.days" multiple>
-                      <option value="mon">Monday</option>
-                      <option value="tue">Tuesday</option>
-                      <option value="wed">Wednesday</option>
-                      <option value="thu">Thursday</option>
-                      <option value="fri">Friday</option>
-                      <option value="sat">Saturday</option>
-                      <option value="sun">Sunday</option>
+                      <select  class="form-control" [(ngModel)]="voucher.availability.days" name="availability.days" multiple>
+                      <option  *ngFor="let day of days; let i = index"   value={{day}} >{{day}}</option> 
                       </select>
                   </div>
                 </div>
@@ -111,7 +107,7 @@
         <div class="card card-profile">
           <div class="card-avatar">
             <a href="#pablo">
-              <img class="img" [src]="venue?.photos[0]" src="../../../assets/img/angular2-logo.png"/>
+              <img class="img"  src="../../../assets/img/angular2-logo.png"/>
             </a>
           </div>
 

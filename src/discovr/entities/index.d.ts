@@ -2,6 +2,16 @@ import LatLngLiteral = google.maps.LatLngLiteral;
 import { Observable } from 'rxjs';
 import { Day } from '../../utils';
 
+
+
+
+export interface IAvalability{
+
+    days: Array <any>;
+    startTime: string;
+    endTime: string;
+    
+} 
 export interface IRawVoucher {
   $key: string;
   title: string;
@@ -9,11 +19,13 @@ export interface IRawVoucher {
   description: string;
   venueId: string;
   disabled: boolean;
-  availability: {
-    days: Day[];
+  availability: 
+{
+    days: string[];
     startTime: string;
     endTime: string;
-  }
+    
+} ;
   featured: boolean;
   priority: number;
 }
@@ -29,6 +41,14 @@ export interface IContact {
   title: string;
   details: string;
 }
+export interface IOpening{
+
+      open: string;
+      close: string;
+    
+}
+
+
 
 export type ISocial = IContact;
 
@@ -48,17 +68,21 @@ export interface IRawVenue {
   social: ISocial[];
   photos: string[];
   openingTimes: {
-    [key: string]: {
-      open: string;
-      close: string;
-    }
-  };
+    "mon":IOpening;
+    "tue":IOpening;
+    "thu":IOpening;
+    "wed":IOpening;
+    "fri":IOpening;
+    "sat":IOpening;
+    "sun":IOpening;
+  }
   
 }
 
 export interface IVenue extends IRawVenue {
   getDistance(): number;
   toRaw(): IRawVenue;
+ 
 }
 
 export interface INews {
@@ -77,5 +101,7 @@ export type ICategory = {
   $key: string;
   $value?: string;
   sum : number ;
+  nbVenue_SubCategory: number;
+  SomVenue: number;
   'subTitle': string ;
 }

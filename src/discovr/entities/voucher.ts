@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { Day } from '../../utils';
-import { IRawVoucher, IVenue, IVoucher } from './index';
+import { IRawVoucher, IVenue, IVoucher, IAvalability} from './index';
 import { VenueService } from '../venues';
 import { VoucherStorage } from '../storage';
 
@@ -33,10 +33,11 @@ export class Voucher implements IVoucher {
   public venueId: string;
   public disabled: boolean;
   public availability: {
-    days: Day[];
+    days: string[];
     startTime: string;
     endTime: string;
-  };
+    
+} ;
   public featured: boolean;
   public priority: number;
   public venue: Observable<IVenue>;

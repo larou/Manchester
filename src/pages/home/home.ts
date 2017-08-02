@@ -48,7 +48,6 @@ export class HomePage {
 
       }
       this.MyHotVoucher = this.shuffleArray(this.MyHotVoucher)
-      console.log('hot vochers: ',this.MyHotVoucher);
     });
 
     this.voucherService.getDailyVoucher()

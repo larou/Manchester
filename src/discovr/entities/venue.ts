@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import LatLngLiteral = google.maps.LatLngLiteral;
 
-import { IContact, ISocial, IVenue } from './index';
+import { IContact, ISocial, IVenue,IOpening } from './index';
 import { LocationService } from '../location';
 
 @Injectable()
@@ -35,10 +35,13 @@ export class Venue implements IVenue {
   social: ISocial[];
   photos: string[];
   openingTimes: {
-    [key: string]: {
-      open: string;
-      close: string;
-    }
+     "mon":IOpening;
+    "tue":IOpening;
+    "thu":IOpening;
+    "wed":IOpening;
+    "fri":IOpening;
+    "sat":IOpening;
+    "sun":IOpening;
   };
 
   constructor(

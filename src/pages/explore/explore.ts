@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
 
 import { CategoryPage } from '../category/category';
-import { ICategory, IVoucher, CategoryService, VoucherService } from '../../discovr';
+import { ICategory, IVoucher, CategoryService, VoucherService, VenueService } from '../../discovr';
 import { VoucherPage } from '../voucher/voucher';
 import { Observable } from 'rxjs';
 
@@ -20,12 +20,15 @@ export class ExplorePage {
   public subTitle: string;
   public Vouchers: any;
   public NbVouchers: number;
+  public nbVenue_SubCategory: number;
+  public SomVenue: number = 0;
 
   constructor(
     private navCtrl: NavController,
     private navParams: NavParams,
     private categoryService: CategoryService,
     private voucherService: VoucherService,
+    private venueService: VenueService
   ) {
 
     this.Vouchers = this.voucherService.getAllVouchers()
@@ -39,14 +42,19 @@ export class ExplorePage {
       .subscribe((categories) => {
         //console.log('Categories:', categories);
         for (let i in categories) {
-          let sum = 0;
-          for (var x in categories[i]) {
-            if (categories[i][x].Places) {
-              sum += parseInt(categories[i][x].Places)
-            }
-          }
-          categories[i].sum = sum
-          categories[i].subTitle = this.subTitle
+
+          this.venueService.getByCategory([this.category,categories[i].$key]).subscribe((listVenues) =>{
+                this.nbVenue_SubCategory = listVenues.length;
+                categories[i].nbVenue_SubCategory = this.nbVenue_SubCategory
+                console.log()
+                
+          })
+          this.venueService.getByCategory([categories[i].$key]).subscribe((listVenues) =>{
+                this.SomVenue = listVenues.length;
+               categories[i].SomVenue = this.SomVenue
+               console.log()
+          })
+
         }
         for (const category of categories) {
           if (category.$key === '!subtitle' || category.$key === 'subtitle') {
@@ -61,6 +69,7 @@ export class ExplorePage {
         .map(vouchers => vouchers.filter(v => v.featured));
 
     }
+    
   }
 
   public clickCategory(category) {
@@ -68,6 +77,8 @@ export class ExplorePage {
       this.navCtrl.push(ExplorePage, { category: category.$key, subtitle: category.subtitle });
 
     } else {
+      
+    
       this.navCtrl.push(CategoryPage,
         {
           category: this.category,
@@ -76,7 +87,7 @@ export class ExplorePage {
             title: category.$key
           }
         })
-
+      
     }
   }
 

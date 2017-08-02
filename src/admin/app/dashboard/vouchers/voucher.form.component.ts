@@ -10,17 +10,60 @@ import { NgForm } from '@angular/forms';
   template: require('./voucher.form.component.html'),
 })
 export class VoucherFormComponent implements OnInit {
+  public days: string[]=['mon','tue','thu','wed','sat','sun'];
+  
+  public voucher: IVoucher={
+   title:'',
+   subtitle: '',
+   description: '',
+   venueId: '',
+   disabled: false,
+   availability: {
+    days:[] ,
+    startTime: '',
+    endTime: '',
+  },
+   featured:false,
+   priority: 0,
+  } as IVoucher;
+  private venue: IVenue= {
+    location: {lat:0,lng:0},
+    contacts: [
+      {title: 'Call',details:''},
+    ],
+    social: [
+      {title: 'Facebook',details:''},
+      {title: 'Snapchat',details:''},
+      {title: 'Instagram',details:''},
+      {title: 'Message',details:''},
+    ],
+    photos: [],
+    openingTimes :{
+      "mon":{open: '',
+             close: ''},
+    "tue":{open: '',
+             close: ''},
+    "thu":{open: '',
+             close: ''},
+    "wed":{open: '',
+             close: ''},
+    "fri":{open: '',
+             close: ''},
+    "sat":{open: '',
+             close: ''},
+    "sun":{open: '',
+             close: ''}
 
-  public voucher: IVoucher;
-  private venue: IVenue;
-
+    }
+    
+  } as IVenue  ;
   constructor(
     private venueService: VenueService,
     private voucherService: VoucherService,
     private router: Router,
     private route: ActivatedRoute,
   ) {
-    console.log('here');
+   
   }
 
   public ngOnInit() {
@@ -35,14 +78,17 @@ export class VoucherFormComponent implements OnInit {
       .subscribe(([venue, voucher]: [IVenue, IVoucher]) => {
         console.log('Voucher form init', venue, voucher);
         this.venue = venue;
-        this.voucher = voucher || {} as IVoucher;
+        this.voucher = voucher || this.voucher as IVoucher;
       });
+
+     
   }
 
   public onSubmit(form: NgForm) {
     console.log('SUBMIT', form, form.valid, this.voucher);
     if (form.valid) {
       this.voucher.venueId = this.venue.$key;
+      console.log('Voucher Mariem: ',this.voucher);
       this.voucherService.save(this.voucher)
         .then(() => {
           this.router.navigate(['venues']);
@@ -51,6 +97,25 @@ export class VoucherFormComponent implements OnInit {
     } else {
       console.log('Form invalid', form, this.voucher);
     }
+
+
+
+    if (form.valid) {
+      if(this.venue.photos)
+          
+      this.venueService.save(this.venue)
+        .then(() => {
+          this.router.navigate(['venues']);
+        })
+        .catch((err) => console.log('Error saving', err));
+    } else {
+      console.log('Form invalid', form);
+    }
+
   }
+ 
+
+
+
 
 }

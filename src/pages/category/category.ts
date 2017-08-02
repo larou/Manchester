@@ -5,6 +5,7 @@ import * as moment from 'moment';
 import { IVenue, VenueService } from '../../discovr';
 import { BehaviorSubject, Observable, Subject } from 'rxjs';
 import { VenuePage } from '../venue/venue';
+import { ExplorePage } from '../explore/explore';
 
 @Component({
   selector: 'page-category',
@@ -20,17 +21,20 @@ export class CategoryPage implements AfterViewInit {
   public title : any ;
   public Places : Array<any>;
   private _venues: Subject<IVenue[]>;
+  public nbSubCategory: number;
 
   constructor(
     private cd: ChangeDetectorRef,
     private navCtrl: NavController,
     private navParams: NavParams,
     private venueService: VenueService,
+    
   ) {
     this.category = navParams.get('category');
     this.subcategory = navParams.get('subcategory');
     this.title = this.subcategory['title']
     this.places()
+    
   }
 
   public ngAfterViewInit() {
@@ -42,6 +46,10 @@ export class CategoryPage implements AfterViewInit {
     this.venueService.getByCategory([this.category, this.title])
       .subscribe(this._venues);
     this.changeSort();
+    /* this.venueService.getByCategory([this.category,this.title]).subscribe((listVenues) =>{
+          this.nbSubCategory = listVenues.length;
+          console.log(this.nbSubCategory)
+    }) */
     
   }
 

@@ -1,7 +1,7 @@
 import { Observable } from 'rxjs';
 import { AngularFire } from 'angularfire2';
 import { Injectable } from '@angular/core';
-
+import * as shortid from 'shortid';
 import { IStore } from './store';
 import { IVoucher, IVenue, IRawVoucher } from './entities';
 import { Voucher, VoucherFactory } from './entities/voucher';
@@ -54,16 +54,30 @@ export class VoucherService implements IStore<IVoucher> {
    * Create or update the voucher in the database.
    * @returns {firebase.Promise<any>|firebase.Thenable<any>}
    */
-  public save(voucher: IVoucher | IRawVoucher) {
+  public save(voucher:  IRawVoucher | IVoucher ) {
     if (voucher instanceof Voucher) {
       voucher = voucher.toRaw();
     }
-    console.log('Saving voucher', voucher);
+    const oldKey = voucher.$key;
+    const newKey = shortid.generate();
+    if (!oldKey || oldKey.slice(0, newKey.length) !== newKey) {
+      voucher.$key = `${newKey}`;
+    }
+    //voucher.updatedAt = moment().toISOString();
+   // if (voucher.createdAt === undefined) {
+     // voucher.createdAt = moment().toISOString();
+    //}
     const clone = (<any>Object).assign({}, voucher);
     delete clone.$key;
-    console.log("keeey" , clone.$key)
+    console.log('Saving vouchers', voucher);
     return this.af.database.object(`/vouchers/${voucher.$key}`)
-      .update(clone);
+      .update(clone)
+      .then(() => {
+        if (oldKey && voucher.$key !== oldKey) {
+          console.log('Deleting old record', oldKey);
+          return this.af.database.object(`/vouchers/${oldKey}`).remove();
+        }
+      });
   }
 
   public destroy(voucher: IVoucher): firebase.Promise<void> {

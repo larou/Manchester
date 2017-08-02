@@ -27,8 +27,8 @@
        
         <div class="list-icon default" item-left></div>
           <h2 >{{ category.$key }}</h2>
-          <p *ngIf="category.sum ">{{category.sum}} places</p>
-          <p *ngIf="!category.sum"><span *ngIf="category.Places">{{category.Places}} places</span></p>
+          <p *ngIf="category.SomVenue">{{category.SomVenue}} places</p>
+          <p *ngIf="!category.SomVenue"><span>{{category.nbVenue_SubCategory}} places</span></p>
         <ion-icon ios="ios-arrow-forward" md="ios-arrow-forward" item-right></ion-icon>
       </ion-item>
       </div>
@@ -40,7 +40,7 @@
     <div *ngIf="(hotVouchers | async)?.length > 0">
       <div class="small-title">{{ title }} Vouchers</div>
 
-      <voucher-slides [vouchers]="hotVouchers | async" ></voucher-slides>
+      <voucher-slides [vouchers]="hotVouchers | async"  ></voucher-slides>
     </div>
 
   </div>
