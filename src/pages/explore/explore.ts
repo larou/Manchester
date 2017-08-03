@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams } from 'ionic-angular';
-
 import { CategoryPage } from '../category/category';
 import { ICategory, IVoucher, CategoryService, VoucherService, VenueService } from '../../discovr';
 import { VoucherPage } from '../voucher/voucher';
@@ -38,38 +37,34 @@ export class ExplorePage {
     this.category = this.navParams.get('category');
     this.subTitle = this.navParams.get('subtitle')
     this.title = this.category || 'Explore';
+
+    /* ********************************************* */
+
     this.categoryService.get(this.category)
       .subscribe((categories) => {
-        //console.log('Categories:', categories);
-        for (let i in categories) {
-
-          this.venueService.getByCategory([this.category,categories[i].$key]).subscribe((listVenues) =>{
-                this.nbVenue_SubCategory = listVenues.length;
-                categories[i].nbVenue_SubCategory = this.nbVenue_SubCategory
-                console.log()
-                
+        console.log('Categories: **************', categories);
+        categories.forEach(category => {
+          this.venueService.getByCategory([this.category, category.$key]).subscribe((listVenues) => {
+            this.nbVenue_SubCategory = listVenues.length;
+            category.nbVenue_SubCategory = this.nbVenue_SubCategory
           })
-          this.venueService.getByCategory([categories[i].$key]).subscribe((listVenues) =>{
-                this.SomVenue = listVenues.length;
-               categories[i].SomVenue = this.SomVenue
-               console.log()
-          })
+          this.venueService.getByCategory([category.$key]).subscribe((listVenues) => {
+            this.SomVenue = listVenues.length;
+            category.SomVenue = this.SomVenue
 
-        }
-        for (const category of categories) {
+          });
           if (category.$key === '!subtitle' || category.$key === 'subtitle') {
             this.subtitle = category.$value;
           } else {
             this.categories.push(category);
           }
-        }
+        });
       });
     if (this.category) {
       this.hotVouchers = this.voucherService.getFeatured(this.NbVouchers)
         .map(vouchers => vouchers.filter(v => v.featured));
 
     }
-    
   }
 
   public clickCategory(category) {
@@ -77,8 +72,8 @@ export class ExplorePage {
       this.navCtrl.push(ExplorePage, { category: category.$key, subtitle: category.subtitle });
 
     } else {
-      
-    
+
+
       this.navCtrl.push(CategoryPage,
         {
           category: this.category,
@@ -87,12 +82,12 @@ export class ExplorePage {
             title: category.$key
           }
         })
-      
+
     }
   }
 
   public clickVoucher(voucher) {
-    this.navCtrl.push(VoucherPage, { voucher:voucher });
+    this.navCtrl.push(VoucherPage, { voucher: voucher });
   }
 
 }

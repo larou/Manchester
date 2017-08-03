@@ -37,8 +37,8 @@ export class Venue implements IVenue {
   openingTimes: {
      "mon":IOpening;
     "tue":IOpening;
-    "thu":IOpening;
     "wed":IOpening;
+    "thu":IOpening;
     "fri":IOpening;
     "sat":IOpening;
     "sun":IOpening;

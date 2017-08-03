@@ -25,8 +25,10 @@ export class VenueContactDetails {
 
   navigate() {
 
+    //this.url="geo:?daddr="+this.lat+","+this.lng;
     this.url= "https://www.google.com/maps/search/?api=1&query="+this.lat+","+this.lng;
     const browser = this.iab.create(this.url,'_self');
-    //window.open("https://www.google.com/maps/search/?api=1&query=" +this.lat+","+this.lng);
+    //window.open(this.url);
+
   }
 }

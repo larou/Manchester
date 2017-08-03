@@ -30,8 +30,9 @@ export class VenueFormComponent implements OnInit {
     social: [
       {title: 'Facebook',details:''},
       {title: 'Snapchat',details:''},
-      {title: 'Instagram',details:''},
       {title: 'Message',details:''},
+      {title: 'Instagram',details:''},
+      
     ],
     photos: [],
     openingTimes :{
@@ -39,9 +40,9 @@ export class VenueFormComponent implements OnInit {
              close: ''},
     "tue":{open: '',
              close: ''},
-    "thu":{open: '',
-             close: ''},
     "wed":{open: '',
+             close: ''},
+    "thu":{open: '',
              close: ''},
     "fri":{open: '',
              close: ''},

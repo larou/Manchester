@@ -27,6 +27,7 @@ export class HomePage {
   endTime: any
   startTime:any
   remaining: any
+  time: any ;
   myCurrentTime: any =new Date().getHours()
   b:boolean;
   public MyHotVoucher: any[] = [];
@@ -53,9 +54,24 @@ export class HomePage {
     this.voucherService.getDailyVoucher()
       .subscribe((voucher) => {
         this.endTime = voucher.availability.endTime;
-        this.endTime = this.endTime.split(":")[0];
+        this.endTime = parseInt(this.endTime.split(":")[0]);
         this.startTime=voucher.availability.startTime;
-        this.startTime=this.startTime.split(":")[0];
+        this.startTime=parseInt(this.startTime.split(":")[0]);
+        this.myCurrentTime= parseInt(this.myCurrentTime);
+
+        if(this.startTime>this.endTime){
+          if ((this.myCurrentTime<this.startTime)&&(this.myCurrentTime>this.endTime))
+          {
+                    this.remaining='closed';
+                    this.b=false;
+          }
+          else{  
+                 
+                 this.remaining =  24 -this.myCurrentTime+ this.endTime;
+                 this.b=true;
+          }
+        }
+        else{
         if((this.myCurrentTime>=this.endTime) || (this.myCurrentTime < this.startTime))
         {
           this.remaining='closed';
@@ -65,7 +81,7 @@ export class HomePage {
           this.remaining = this.endTime - this.myCurrentTime
           this.b=true;
         }
-        
+        }
           console.log(this.remaining);
 
       });
